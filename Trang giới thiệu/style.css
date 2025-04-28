@@ -192,6 +192,16 @@ body {
     font-size: 0.9rem;
     padding: 8px 16px;
   }
+
+  /* Đảm bảo phần Call to Action không bị che bởi mobile footer */
+  main {
+    padding-bottom: 80px; /* Thêm khoảng cách dưới để tránh mobile footer */
+  }
+
+  /* Tùy chỉnh thêm cho section Call to Action nếu cần */
+  section.text-center {
+    margin-bottom: 20px; /* Khoảng cách phụ để bố cục đẹp hơn */
+  }
 }
 
 @media (min-width: 992px) {
