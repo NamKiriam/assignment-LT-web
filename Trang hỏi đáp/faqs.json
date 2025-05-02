@@ -1,0 +1,7 @@
+{
+  "faqs": [
+      { "ID_question": 1, "question": "Câu hỏi mẫu 1", "answer": null, "Date_create": "2023-10-15", "name": "Khách" },
+      { "ID_question": 2, "question": "Câu hỏi mẫu 2", "answer": "Trả lời mẫu", "Date_create": "2023-10-16", "name": "User1" }
+  ],
+  "totalItems": 2
+}
