@@ -1,0 +1,184 @@
+/* Tổng thể */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #00c29f !important;
+}
+
+.navbar-brand img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.user-icon {
+  height: 50px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+}
+
+
+/* ===== Contact Form ===== */
+.contact-form-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.contact-form-section h2 {
+  color: #00c29f;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.contact-form-section .form-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.contact-form-section .form-control,
+.contact-form-section .form-select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+}
+
+.contact-form-section .form-control:focus,
+.contact-form-section .form-select:focus {
+  border-color: #00c29f;
+  box-shadow: 0 0 0 0.15rem rgba(0, 194, 159, 0.25);
+  outline: none;
+}
+
+.contact-form-section textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form-section button[type="submit"] {
+  background-color: #00c29f;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.contact-form-section button[type="submit"]:hover {
+  background-color: #009e85;
+}
+
+/* Google Map iframe */
+.contact-form-section .map-wrapper {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-form-section iframe {
+  flex: 1;
+  border-radius: 12px;
+  border: 2px solid #00c29f;
+  width: 100%;
+  height: 100%;
+  min-height: auto;
+  border-radius: 12px;
+  border: 2px solid #00c29f;
+}
+
+/* Responsive Tablet (≥ 768px và < 992px) */
+@media (max-width: 991.98px) {
+  .contact-form-section h2 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .contact-form-section form {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Responsive Mobile (≤ 767px) */
+@media (max-width: 767.98px) {
+  .contact-form-section {
+    padding: 40px 20px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .contact-form-section button[type="submit"] {
+    width: 100%;
+  }
+
+  .contact-form-section .col-md-6 {
+    margin-bottom: 40px;
+  }
+}
+
+
+/* === Footer === */
+.bg-footer {
+  background-color: #14d3a2;
+}
+
+.social-icon {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  color: black;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Icon brand màu chuẩn */
+.facebook {
+  color: #1877f2;
+}
+.tiktok {
+  color: black;
+}
+.x {
+  color: black;
+}
+.instagram {
+  color: #e1306c;
+}
+
+
+/* Responsive */
+@media (max-width: 576px) {
+  footer .col-12.d-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  footer .col-12.d-flex nav {
+    margin-top: 0.5rem;
+  }
+  footer .col-md-6 {
+    margin-top: 1.5rem;
+  }
+}
+

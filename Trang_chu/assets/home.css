@@ -1,0 +1,351 @@
+/* Tổng thể */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #00c29f !important;
+  }
+  
+  .navbar-brand img {
+    height: 50px;
+    width: auto;
+    display: block;
+  }
+
+  .user-icon {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .navbar-nav .nav-link {
+    font-weight: 500;
+  }
+  
+  /* Hero section */
+  .hero {
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(85%);
+  }
+  
+  /* .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  } */
+  
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* color: black; */
+    max-width: 600px;
+    padding: 1.5rem;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff3366;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    /* color: black; */
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  
+  .hero-content a.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffffff;
+    
+    background: linear-gradient(135deg, #00c853, #64dd17);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .hero-content a.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* .order-btn {
+    font-weight: 600;
+    padding: 10px 30px;
+    font-size: 1rem;
+    text-align: left;
+  } */
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  .hero-content {
+    z-index: 2;
+    max-width: 700px;
+    text-align: center;
+    animation: fadeInUp 1s ease-out both;
+  }
+
+  .hero-content h1 {
+    animation-delay: 0.3s;
+  }
+
+  .hero-content p {
+    animation-delay: 0.6s;
+  }
+
+  .hero-content a {
+    animation-delay: 0.9s;
+  }
+
+  .hero-content a.btn {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  
+  /* Vì sao chọn */
+
+  section {
+    background-color: lightskyblue; /* xanh nhạt */
+  }
+
+  .why-choose h2 {
+    text-align: center;
+    font-weight: 700;
+    color: navy;
+  }
+
+  .why-choose .card img {
+    display: block;
+    margin: 0 auto 1rem auto;
+    height: 100px;
+  }
+
+  .why-choose .card {
+    border: none;
+    background-color: lightskyblue;
+    padding: 1.5rem;
+    height: 100%;
+    text-align: left;
+    border-right: 1px dashed gray;
+    border-bottom: 1px dashed gray;
+    border-radius: 100;
+    box-shadow: none;
+  }
+  
+  .why-choose .card h5 {
+    font-weight: bold;
+    color: darkslategray;
+    text-align: center;
+  }
+  
+  .why-choose p {
+    text-align: center;
+  }
+
+  .why-choose .card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: dimgray;
+  }
+  
+  .why-choose .row > [class*='col-']:nth-child(3n) {
+    border-right: none;
+  }
+  
+  /* Xóa border dưới hàng cuối */
+  .why-choose .row > [class*='col-']:nth-last-child(-n+3) {
+    border-bottom: none;
+  }
+  
+
+  .why-choose .card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .hero {
+      height: auto;
+    }
+  
+    .hero-content {
+      position: static;
+      transform: none;
+      padding: 2rem 1rem;
+      text-align: left;
+    }
+  
+    .hero-content h1 {
+      font-size: 1.5rem;
+    }
+  
+    .hero-content p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-content h1 {
+      font-size: 1.3rem;
+    }
+  
+    .hero-content p {
+      font-size: 0.9rem;
+    }
+  
+    .order-btn {
+      width: 100%;
+      padding: 12px;
+    }
+  }
+
+  /* --- Quy trình đặt suất ăn --- */
+
+  .order-process {
+    background-color: lightpink;
+  }
+  
+  .process-box {
+    background-color: lightpink;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 3rem;
+    height: 100%;
+    text-align: left;
+    border-right: 1px dashed gray;
+    border-bottom: 1px dashed gray;
+    border-radius: 100;
+    box-shadow: none;
+  }
+  
+  .process-steps {
+    list-style: none;
+    counter-reset: step;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .process-steps li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  
+  .step-circle {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    line-height: 32px;
+    margin-right: 1rem;
+  }
+  
+  .process-box h5 {
+    text-align: center;
+  }
+
+  .step-content h6 {
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 0.25rem;
+  }
+  
+  .step-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: black;
+  }
+  
+  .process-img {
+    height: 500px;
+  }
+  
+  
+
+  /* === Footer === */
+  .bg-footer {
+    background-color: #14d3a2;
+  }
+  
+  .social-icon {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    color: black;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Icon brand màu chuẩn */
+  .facebook {
+    color: #1877f2;
+  }
+  .tiktok {
+    color: black;
+  }
+  .x {
+    color: black;
+  }
+  .instagram {
+    color: #e1306c;
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 576px) {
+    footer .col-12.d-flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    footer .col-12.d-flex nav {
+      margin-top: 0.5rem;
+    }
+    footer .col-md-6 {
+      margin-top: 1.5rem;
+    }
+  }
+  
+  
