@@ -35,6 +35,31 @@ function formatDate(dateStr) {
     });
 }
 
+// Thêm câu hỏi mới vào DOM
+function addNewQuestionToDOM(name, question) {
+    const questionSection = document.querySelector('.question-section');
+    const questionCard = document.createElement('div');
+    questionCard.className = 'question-card animate__animated animate__fadeIn';
+    questionCard.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div class="username">
+                <i class="bi bi-person-circle"></i>
+                <span>${name || 'Khách'}</span>
+            </div>
+            <span class="date">${formatDate(new Date())}</span>
+        </div>
+        <p class="question-title">${question}</p>
+        <p>Chưa có câu trả lời</p>
+    `;
+    // Thêm câu hỏi mới vào đầu danh sách
+    const firstCard = questionSection.querySelector('.question-card');
+    if (firstCard) {
+        questionSection.insertBefore(questionCard, firstCard);
+    } else {
+        questionSection.appendChild(questionCard);
+    }
+}
+
 // Tải câu hỏi từ server
 export async function loadFAQs(page = 1) {
     try {
@@ -48,6 +73,7 @@ export async function loadFAQs(page = 1) {
     }
 }
 
+// Khởi tạo khi trang sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     // Tải Animate.css
     const link = document.createElement('link');
@@ -58,11 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tải danh sách câu hỏi ban đầu
     loadFAQs(getCurrentPage());
 
-    // Xử lý form gửi câu hỏi
+    // Xử lý gửi form
     const form = document.querySelector('#question-form');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
+        const name = formData.get('name');
+        const question = formData.get('question');
 
         try {
             const response = await fetch('submit.php', {
@@ -73,8 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.success) {
                 alert('Gửi câu hỏi thành công!');
-                form.reset();          // Xóa nội dung form
-                loadFAQs(1);           // Tải lại danh sách câu hỏi
+                addNewQuestionToDOM(name, question); // Thêm câu hỏi mới vào DOM
+                form.reset(); // Xóa nội dung form
+                // Cập nhật phân trang (tăng totalItems lên 1)
+                updatePagination(getCurrentPage() * itemsPerPage + 1);
             } else {
                 alert(result.message || 'Gửi thất bại!');
             }
