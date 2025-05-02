@@ -8,7 +8,7 @@ body {
 }
 
 .header .navbar-nav .nav-link {
-  color: black;
+  color: #073B4C;
   text-decoration: double;
   margin-right: 15px;
 }
@@ -73,13 +73,13 @@ body {
 
 .footer {
   background-color: #20c997;
-  color: black;
+  color: #073B4C;
   padding: 20px;
   text-align: center;
 }
 
 .footer a {
-  color: black;
+  color: #073B4C;
   text-decoration: none;
   margin: 0 10px;
 }
@@ -123,7 +123,7 @@ body {
 }
 
 .mobile-footer .nav-item {
-  color: black;
+  color: #073B4C;
   text-decoration: none;
 }
 
