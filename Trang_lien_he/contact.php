@@ -1,3 +1,5 @@
+<?php include "../auth/auth_check.php"; ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -23,14 +25,18 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.html">Trang chủ</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.html">Giới thiệu</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.html">Hỏi đáp</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.html">Thực đơn</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.html">Liên hệ</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.phpphp">Liên hệ</a></li>
     </ul>
-    <img src="../Trang_chu/assets/picture/user_icon.png" alt="User" class="ms-3 user-icon">
+
+    <a href="../auth/login.php">
+      <img src="../Trang_chu/assets/picture/user_icon.png" alt="Login Icon" class="user-icon">
+    </a>
+
   </div>
 </section>
 
@@ -121,10 +127,10 @@
       <!-- Cột phải: nav + mạng xã hội -->
       <div class="col-md-5 text-md-end text-start">
         <nav class="mb-33">
-          <a href="../Trang_chu/home.html" class="fw-bold text-dark me-3">Trang chủ</a>
-          <a href="../Trang_gioi_thieu/index.html" class="fw-bold text-dark me-3">Giới thiệu</a>
-          <a href="../Trang_hoi_dap/index.html" class="fw-bold text-dark me-3">Hỏi đáp</a>
-          <a href="../Trang_thuc_don/index.html" class="fw-bold text-dark me-3">Thực đơn</a>
+          <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
+          <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
+          <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
+          <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
           <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
           <a href="#" class="fw-bold text-dark">Liên hệ</a>
         </nav>

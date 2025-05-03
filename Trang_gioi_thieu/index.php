@@ -25,13 +25,13 @@
                 </button>
                 <div class="collapse navbar-collapse header-tab-item fw-bold" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.html">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.html">Hỏi đáp</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.html">Thực đơn</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.html">Liên hệ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="bi-person-circle"></i></a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.php">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../auth/login.php"><i class="bi-person-circle"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -211,12 +211,12 @@
         <div class="footer-tab d-flex flex-column flex-md-row justify-content-between align-items-center">
             <span class="logo"><img src="/Trang hỏi đáp/res/logo.png" alt="Logo" class="img-fluid"></span>
             <div class="footer-tab-item fw-bold d-flex flex-wrap gap-2">
-                <a href="../Trang_chu/home.html" class="fw-bold text-dark me-3">Trang chủ</a>
+                <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
                 <a href="#" class="fw-bold text-dark me-3">Giới thiệu</a>
-                <a href="../Trang_hoi_dap/index.html" class="fw-bold text-dark me-3">Hỏi đáp</a>
-                <a href="../Trang_thuc_don/index.html" class="fw-bold text-dark me-3">Thực đơn</a>
+                <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
+                <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
                 <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-                <a href="../Trang_lien_he/contact.html" class="fw-bold text-dark">Liên hệ</a>
+                <a href="../Trang_lien_he/contact.php" class="fw-bold text-dark">Liên hệ</a>
             </div>
         </div>
         <div class="contact-info d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start gap-4">

@@ -99,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <button type="submit" class="btn btn-success w-100 fw-bold">Đăng ký</button>
+        <a href="login.php" class="text-decoration-underline">Đăng nhập!</a>
       </form>
     </div>
   </div>

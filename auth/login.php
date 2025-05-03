@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST" action="../Trang_chu/home.html">
+        <form method="POST" action="../Trang_chu/home.php">
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" required>
@@ -75,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
             <button type="submit" class="btn btn-success w-100 fw-bold">Đăng nhập</button>
-            <a href="forgot_password.php" class="text-decoration-none">Quên mật khẩu?</a>
+            <a href="forgot_password.php" class="text-decoration-underline">Quên mật khẩu?</a> </br>
+            <a href="signup.php" class="text-decoration-underline">Chưa có tài khoản? Đăng ký!</a>
         </form>
     </div>
   </div>
