@@ -1,3 +1,4 @@
+<?php include("../include/header_home.php"); ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -13,9 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../include/header_footer.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header
     <header class="header">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -36,7 +38,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
 
     <!-- Main Content -->
     <main>
