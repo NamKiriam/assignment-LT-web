@@ -71,6 +71,24 @@ body {
   margin-bottom: 10px;
 }
 
+.question-card .status-text {
+  font-style: italic;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.question-card .answer-text {
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.question-card .action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
 .footer {
   background-color: #20c997;
   color: black;
