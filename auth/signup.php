@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once '../include/config.php';
 
 $errors = [];
 $success = '';
@@ -48,109 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../include/header_footer.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <style>
-    body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
-  /* Navbar */
-  .navbar {
-    background-color: #00c29f !important;
-  }
-  
-  .navbar-brand img {
-    height: 50px;
-    width: auto;
-    display: block;
-  }
-
-  .user-icon {
-    height: 50px;
-    width: auto;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .navbar-nav .nav-link {
-    font-weight: 500;
-  }
-
-    /* === Footer === */
-    .bg-footer {
-    background-color: #14d3a2;
-  }
-  
-  .social-icon {
-    padding: 10px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    color: black;
-  }
-  
-  .social-icon:hover {
-    transform: scale(1.1);
-  }
-  
-  /* Icon brand màu chuẩn */
-  .facebook {
-    color: #1877f2;
-  }
-  .tiktok {
-    color: black;
-  }
-  .x {
-    color: black;
-  }
-  .instagram {
-    color: #e1306c;
-  }
-  
-  
-  /* Responsive */
-  @media (max-width: 576px) {
-    footer .col-12.d-flex {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    footer .col-12.d-flex nav {
-      margin-top: 0.5rem;
-    }
-    footer .col-md-6 {
-      margin-top: 1.5rem;
-    }
-  }
-  </style>
-
 </head>
 <body class="bg-light">
 
-<!-- Navbar -->
-<section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
-  <a class="navbar-brand" href="#">
-    <img src="../Trang_chu/assets/picture/foodiness.png" alt="Logo">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.html">Trang chủ</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.html">Giới thiệu</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.html">Hỏi đáp</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.html">Thực đơn</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.html">Liên hệ</a></li>
-    </ul>
-    <img src="../Trang_chu/assets/picture/user_icon.png" alt="User" class="ms-3 user-icon">
-  </div>
-</section>
+<?php include '../include/header_home.php'; ?>
 
 <div class="container mt-5">
   <div class="card mx-auto" style="max-width: 600px;">
@@ -201,44 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="bg-footer text-dark py-4">
-<div class="container">
-    <div class="row justify-content-between">
-    <!-- Cột trái: logo + liên hệ -->
-    <div class="col-md-6 mb-4">
-        <a href="#" class="navbar-brand d-block mb-3">
-        <img src="../Trang_chu/assets/picture/foodiness.png" alt="Foodiness Logo" height="50">
-        </a>
-        <h5 class="fw-bold mb-3">Liên hệ</h5>
-        <p><i class="bi bi-envelope me-2"></i>Email: info@foodiness.vn</p>
-        <p><i class="bi bi-telephone me-2"></i>Hotline: 0123 456 789</p>
-        <p><i class="bi bi-geo-alt me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</p>
-        <p><i class="bi bi-building me-2"></i>Văn phòng: Quận 1, TP.HCM</p>
-    </div>
-
-    <!-- Cột phải: nav + mạng xã hội -->
-    <div class="col-md-5 text-md-end text-start">
-        <nav class="mb-33">
-        <a href="#" class="fw-bold text-dark me-3">Trang chủ</a>
-        <a href="../Trang_gioi_thieu/index.html" class="fw-bold text-dark me-3">Giới thiệu</a>
-        <a href="../Trang_hoi_dap/index.html" class="fw-bold text-dark me-3">Hỏi đáp</a>
-        <a href="../Trang_thuc_don/index.html" class="fw-bold text-dark me-3">Thực đơn</a>
-        <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-        <a href="../Trang_lien_he/contact.html" class="fw-bold text-dark">Liên hệ</a>
-        </nav>
-
-        <h6 class="fw-bold mb-3">Mạng xã hội</h6>
-        <div class="d-flex gap-3 justify-content-md-end justify-content-start">
-        <a href="#"><i class="fab fa-facebook fa-2x social-icon facebook"></i></a>
-        <a href="#"><i class="fab fa-tiktok fa-2x social-icon tiktok"></i></a>
-        <a href="#"><i class="fab fa-x-twitter fa-2x social-icon x"></i></a>
-        <a href="#"><i class="fab fa-instagram fa-2x social-icon instagram"></i></a>
-        </div>
-    </div>
-    </div>
-</div>
-</footer>
 
 </body>
 </html>
