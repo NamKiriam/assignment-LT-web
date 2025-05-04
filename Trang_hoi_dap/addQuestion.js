@@ -8,33 +8,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemsPerPage = 4; // Số câu hỏi mỗi trang
     let currentPage = 1; // Trang hiện tại
     let questions = []; // Mảng lưu trữ tất cả câu hỏi
-    let currentUser = currentUserInput.value; // Lấy username từ input (được thiết lập bởi $_SESSION['user_name'])
+    let currentUser = currentUserInput.value; // Lấy username từ input
 
-    // Đồng bộ currentUser với localStorage
-    localStorage.setItem('currentUser', currentUser);
-
-    // Lấy dữ liệu từ localStorage khi tải trang
+    // Lấy dữ liệu từ server khi tải trang
     function loadQuestions() {
-        const savedQuestions = localStorage.getItem('questions');
-        if (savedQuestions) {
-            questions = JSON.parse(savedQuestions).filter(q => q.name === currentUser); // Chỉ lấy câu hỏi của người dùng hiện tại
-        }
+        fetch('getQuestion.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    questions = data.questions || [];
+                    displayQuestions(currentPage);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Lỗi khi lấy câu hỏi:', error));
     }
 
-    // Lưu dữ liệu vào localStorage
-    function saveQuestions() {
-        // Lấy tất cả câu hỏi hiện có trong localStorage
-        let allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-        // Lọc bỏ câu hỏi của người dùng hiện tại để tránh trùng lặp
-        allQuestions = allQuestions.filter(q => q.name !== currentUser);
-        // Thêm câu hỏi mới của người dùng hiện tại
-        allQuestions.push(...questions);
-        localStorage.setItem('questions', JSON.stringify(allQuestions));
+    // Lưu câu hỏi mới vào server
+    function saveQuestion(questionText) {
+        const formData = new FormData();
+        formData.append('question_text', questionText);
+
+        fetch('saveQuestion.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                loadQuestions(); // Tải lại danh sách câu hỏi ngay sau khi gửi
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error('Lỗi khi gửi câu hỏi:', error));
     }
 
     // Hàm hiển thị danh sách câu hỏi theo trang
     function displayQuestions(page) {
-        questionList.innerHTML = ''; // Xóa danh sách hiện tại
+        questionList.innerHTML = '';
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const paginatedQuestions = questions.slice(start, end);
@@ -48,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         paginatedQuestions.forEach((question, index) => {
             const questionCard = document.createElement('div');
             questionCard.className = 'question-card';
-            const isCurrentUser = question.name === currentUser; // Luôn đúng vì chỉ hiển thị câu hỏi của người dùng
+            const isCurrentUser = question.name === currentUser;
 
             questionCard.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -71,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             questionList.appendChild(questionCard);
         });
 
-        // Thêm sự kiện cho các nút chỉnh sửa
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = parseInt(e.target.getAttribute('data-index'));
@@ -79,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Thêm sự kiện cho các nút xóa
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = parseInt(e.target.getAttribute('data-index'));
@@ -87,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        updatePagination(); // Cập nhật nút phân trang
+        updatePagination();
     }
 
     // Hàm chỉnh sửa câu hỏi
@@ -95,33 +107,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const question = questions[index];
         const newQuestionText = prompt('Chỉnh sửa câu hỏi:', question.text);
         if (newQuestionText && newQuestionText.trim()) {
-            questions[index].text = newQuestionText.trim();
-            saveQuestions(); // Lưu thay đổi vào localStorage
-            displayQuestions(currentPage); // Cập nhật giao diện
+            const formData = new FormData();
+            formData.append('question_id', question.id);
+            formData.append('question_text', newQuestionText);
+
+            fetch('updateQuestion.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    questions[index].text = newQuestionText.trim();
+                    displayQuestions(currentPage);
+                    alert(data.message);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Lỗi khi chỉnh sửa:', error));
         }
     }
 
     // Hàm xóa câu hỏi
     function deleteQuestion(index) {
         if (confirm('Bạn có chắc chắn muốn xóa câu hỏi này?')) {
-            questions.splice(index, 1); // Xóa câu hỏi khỏi mảng
-            saveQuestions(); // Lưu thay đổi vào localStorage
-            const totalPages = Math.ceil(questions.length / itemsPerPage);
-            if (currentPage > totalPages && totalPages > 0) {
-                currentPage = totalPages;
-            } else if (questions.length === 0) {
-                currentPage = 1;
-            }
-            displayQuestions(currentPage); // Cập nhật giao diện
+            const questionId = questions[index].id;
+
+            fetch(`deleteQuestion.php?id=${questionId}`, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    questions.splice(index, 1);
+                    const totalPages = Math.ceil(questions.length / itemsPerPage);
+                    if (currentPage > totalPages && totalPages > 0) {
+                        currentPage = totalPages;
+                    } else if (questions.length === 0) {
+                        currentPage = 1;
+                    }
+                    displayQuestions(currentPage);
+                    alert(data.message);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Lỗi khi xóa:', error));
         }
     }
 
     // Hàm cập nhật phân trang
     function updatePagination() {
         const totalPages = Math.ceil(questions.length / itemsPerPage);
-        pagination.innerHTML = ''; // Xóa nội dung phân trang hiện tại
+        pagination.innerHTML = '';
 
-        // Nút "Trước"
         if (currentPage > 1) {
             const prevButton = document.createElement('button');
             prevButton.className = 'btn btn-outline-primary';
@@ -133,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pagination.appendChild(prevButton);
         }
 
-        // Nút "Sau"
         if (currentPage < totalPages) {
             const nextButton = document.createElement('button');
             nextButton.className = 'btn btn-outline-primary';
@@ -145,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pagination.appendChild(nextButton);
         }
 
-        // Hiển thị thông tin trang
         const pageInfo = document.createElement('span');
         pageInfo.className = 'ms-2 align-self-center';
         pageInfo.textContent = `Trang ${currentPage} / ${totalPages || 1}`;
@@ -159,32 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const questionText = document.getElementById('question-text').value.trim();
 
         if (questionText) {
-            // Thêm câu hỏi mới vào mảng
-            const newQuestion = {
-                name: currentUser,
-                text: questionText,
-                date: new Date().toLocaleString('vi-VN', {
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }),
-                answered: false,
-                answer: null
-            };
-            questions.unshift(newQuestion); // Thêm vào đầu mảng
-            saveQuestions(); // Lưu vào localStorage
-            currentPage = 1; // Quay về trang 1 khi có câu hỏi mới
-            displayQuestions(currentPage); // Hiển thị lại danh sách
-
-            // Xóa nội dung textarea
+            saveQuestion(questionText);
             document.getElementById('question-text').value = '';
         } else {
             alert('Vui lòng nhập câu hỏi!');
         }
     });
 
-    // Khởi tạo: Lấy dữ liệu từ localStorage và hiển thị
+    // Khởi tạo: Lấy dữ liệu từ server và hiển thị
     loadQuestions();
-    displayQuestions(currentPage);
 });
