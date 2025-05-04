@@ -1,4 +1,4 @@
-<?php include "../auth/auth_check.php"; require_once '../include/config.php'?>
+<?php include "../auth/auth_check.php"; ?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,9 +22,9 @@
 
 </head>
 <body>
-
+<?php include("../include/header_home.php"); ?>
 <!-- Navbar -->
-<section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
+<!-- <section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
   <a class="navbar-brand" href="#">
     <img src="../Trang_chu/assets/picture/foodiness.png" alt="Logo" height="">
   </a>
@@ -46,7 +46,7 @@
     </a>
 
   </div>
-</section>
+</section> -->
 
     <!-- Main Content -->
 <!-- body.html -->
