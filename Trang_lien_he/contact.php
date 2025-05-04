@@ -15,30 +15,7 @@
 
 <body>
 
-<!-- Navbar -->
-<section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
-  <a class="navbar-brand" href="#">
-    <img src="../Trang_chu/assets/picture/foodiness.png" alt="Logo" height="">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.phpphp">Liên hệ</a></li>
-    </ul>
-
-    <a href="../auth/login.php">
-      <img src="../Trang_chu/assets/picture/user_icon.png" alt="Login Icon" class="user-icon">
-    </a>
-
-  </div>
-</section>
+<?php include("../include/header_home.php"); ?>
 
 <!-- Sau phần navbar -->
 <section class="contact-form-section py-5">
@@ -108,44 +85,7 @@
 </section>
 
 
-<!-- Footer -->
-<footer class="bg-footer text-dark py-4">
-  <div class="container">
-    <div class="row justify-content-between">
-      <!-- Cột trái: logo + liên hệ -->
-      <div class="col-md-6 mb-4">
-        <a href="#" class="navbar-brand d-block mb-3">
-          <img src="../Trang_chu/assets/picture/foodiness.png" alt="Foodiness Logo" height="50">
-        </a>
-        <h5 class="fw-bold mb-3">Liên hệ</h5>
-        <p><i class="bi bi-envelope me-2"></i>Email: info@foodiness.vn</p>
-        <p><i class="bi bi-telephone me-2"></i>Hotline: 0123 456 789</p>
-        <p><i class="bi bi-geo-alt me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</p>
-        <p><i class="bi bi-building me-2"></i>Văn phòng: Quận 1, TP.HCM</p>
-      </div>
-  
-      <!-- Cột phải: nav + mạng xã hội -->
-      <div class="col-md-5 text-md-end text-start">
-        <nav class="mb-33">
-          <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
-          <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
-          <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
-          <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
-          <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-          <a href="#" class="fw-bold text-dark">Liên hệ</a>
-        </nav>
-  
-        <h6 class="fw-bold mb-3">Mạng xã hội</h6>
-        <div class="d-flex gap-3 justify-content-md-end justify-content-start">
-          <a href="#"><i class="fab fa-facebook fa-2x social-icon facebook"></i></a>
-          <a href="#"><i class="fab fa-tiktok fa-2x social-icon tiktok"></i></a>
-          <a href="#"><i class="fab fa-x-twitter fa-2x social-icon x"></i></a>
-          <a href="#"><i class="fab fa-instagram fa-2x social-icon instagram"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+<?php include("../include/footer_home.php"); ?>
 
 </body>
 </html>

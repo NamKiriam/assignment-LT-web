@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['user_id'] = $user['ID_user'];
             $_SESSION['user_name'] = $user['Username']; // Đồng bộ với tên cột trong database
             $_SESSION['email'] = $user['Email'];
+            $_SESSION['role'] = $user['Role'];
 
             // Kiểm tra nếu có URL để quay lại
             if (isset($_SESSION['redirect_url'])) {
@@ -31,7 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 exit();
             }
 
-            header("Location: ../Trang_chu/home.php");
+            if ($user['Role'] === 'admin') {
+                header("Location: ../admin/index.php");
+            } 
+            else {
+                header("Location: ../Trang_chu/home.php");
+            }            
             exit();
         } else {
             $error = "Mật khẩu không đúng.";
