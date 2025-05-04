@@ -57,15 +57,20 @@ CREATE TABLE `article` (
   `title` varchar(255) NOT NULL,
   `author` varchar(100) NOT NULL,
   `update_date` datetime NOT NULL,
-  `content` text DEFAULT NULL
+  `content` text DEFAULT NULL,
+  `like` int(11) NOT NULL DEFAULT 0 CHECK (`like` >= 0),
+  `dislike` int(11) NOT NULL DEFAULT 0 CHECK (`dislike` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `article`
+--
 
-INSERT INTO `article` (`id`, `title`, `author`, `update_date`, `content`) VALUES
-('A20250503090000', 'Best Pho Recipe', 'Chef Nam', '2025-05-03 09:00:00', 'Here is the secret to the best pho...'),
-('A20250503091000', 'Delicious Banh Mi', 'Chef Linh', '2025-05-04 10:37:50', 'Making the perfect banh mi is all about the bread...'),
-('A20250503092000', 'Vietnamese Coffee Guide', 'Barista Hoa', '2025-05-03 09:20:00', 'Strong, sweet, and creamy — learn to make it right.');
+INSERT INTO `article` (`id`, `title`, `author`, `update_date`, `content`, `like`, `dislike`) VALUES
+('A20250503090000', 'Best Pho Recipe', 'Chef Nam', '2025-05-03 09:00:00', 'Here is the secret to the best pho...', 0, 0),
+('A20250503091000', 'Delicious Banh Mi', 'Chef Linh', '2025-05-04 10:37:50', 'Making the perfect banh mi is all about the bread...', 0, 0),
+('A20250503092000', 'Vietnamese Coffee Guide', 'Barista Hoa', '2025-05-03 09:20:00', 'Strong, sweet, and creamy — learn to make it right.', 0, 0),
+('A20250504115057', 'The quick brown fox jumps over the lazy dog.', 'Lebron James', '2025-05-04 16:50:57', 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.', 0, 0);
 
 -- Bảng câu hỏi
 CREATE TABLE question (
