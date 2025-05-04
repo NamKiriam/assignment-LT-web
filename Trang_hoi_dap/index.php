@@ -30,9 +30,9 @@ include "../include/header_home.php";
 <body>
     <!-- Main Content -->
     <main>
-        <div class="container-fluid">
-            <h1 class="main-title">Hãy đặt câu hỏi cho chúng tôi</h1>
-            <p class="sub-title">Chúng tôi sẽ trả lời sớm nhất có thể</p>
+        <div class="container-fluid px-3 px-md-5">
+            <h1 class="main-title text-center text-center">Hãy đặt câu hỏi cho chúng tôi</h1>
+            <p class="sub-title text-center text-center">Chúng tôi sẽ trả lời sớm nhất có thể</p>
 
             <div class="question-section">
                 <div class="question-box">
@@ -60,20 +60,22 @@ include "../include/header_home.php";
     </main>
 
     <!-- Desktop Footer -->
-    <?php include("../include/footer_home.php"); ?>
+    <div class="d-none d-md-block">
+        <?php include("../include/footer_home.php"); ?>
+    </div>
 
     <!-- Mobile Footer -->
-    <footer class="mobile-footer d-none">
+    <footer class="mobile-footer d-block d-md-none">
         <div class="container d-flex justify-content-around align-items-center">
-            <a href="#" class="nav-item text-center">
+            <a href="../Trang_chu/home.php" class="nav-item text-center">
                 <i class="bi bi-house-door" style="font-size: 1.5rem;"></i>
                 <span class="d-block">Trang chủ</span>
             </a>
-            <a href="#" class="nav-item text-center">
+            <a href="../Trang_thuc_don/index.php" class="nav-item text-center">
                 <i class="bi bi-list"></i>
                 <span class="d-block">Thực đơn</span>
             </a>
-            <a href="#" class="nav-item text-center">
+            <a href="../Trang_hoi_dap/index.php" class="nav-item text-center">
                 <i class="bi bi-question-circle"></i>
                 <span class="d-block">Hỏi đáp</span>
             </a>

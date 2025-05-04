@@ -14,33 +14,43 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['question_id']) && isset($_POST['question_text'])) {
     $question_id = intval($_POST['question_id']);
-    $content = trim($_POST['question_text']);
+    $answer = trim($_POST['question_text']); // Sử dụng 'question_text' làm câu trả lời
     $id_user = $_SESSION['user_id'];
+    $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin'; // Giả định role
 
-    if (!empty($content) && $question_id > 0) {
-        // Kiểm tra xem câu hỏi có thuộc về người dùng không
-        $stmt = $connection->prepare("SELECT ID_user FROM question WHERE ID_question = ?");
+    if (!empty($answer) && $question_id > 0) {
+        // Kiểm tra câu hỏi tồn tại
+        $stmt = $connection->prepare("SELECT ID_user, answered FROM question WHERE ID_question = ?");
         $stmt->bind_param("i", $question_id);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
-            if ($row['ID_user'] !== $id_user) {
+            if (!$is_admin && $row['ID_user'] !== $id_user) {
                 $response['message'] = 'Bạn không có quyền chỉnh sửa câu hỏi này!';
                 echo json_encode($response);
                 exit();
             }
 
-            // Cập nhật câu hỏi
-            $stmt = $connection->prepare("UPDATE question SET Content = ? WHERE ID_question = ?");
-            $stmt->bind_param("si", $content, $question_id);
+            // Cập nhật hoặc chỉnh sửa câu trả lời
+            if ($row['answered']) {
+                // Chinh sửa câu trả lời đã tồn tại
+                $stmt = $connection->prepare("UPDATE question SET answer = ? WHERE ID_question = ?");
+                $stmt->bind_param("si", $answer, $question_id);
+                $action_message = 'Câu trả lời đã được chỉnh sửa thành công!';
+            } else {
+                // Trả lời mới
+                $stmt = $connection->prepare("UPDATE question SET answer = ?, answered = 1 WHERE ID_question = ?");
+                $stmt->bind_param("si", $answer, $question_id);
+                $action_message = 'Câu trả lời đã được cập nhật thành công!';
+            }
 
             if ($stmt->execute()) {
                 $response['success'] = true;
-                $response['message'] = 'Câu hỏi đã được cập nhật thành công!';
+                $response['message'] = $action_message;
             } else {
-                $response['message'] = 'Lỗi khi cập nhật câu hỏi.';
+                $response['message'] = 'Lỗi khi cập nhật câu hỏi: ' . $stmt->error;
             }
         } else {
             $response['message'] = 'Câu hỏi không tồn tại.';
