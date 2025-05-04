@@ -38,10 +38,10 @@
     <!-- Main Content -->
     <main>
         <div class="container-fluid">
-            <h1 class="main-title">Quản lý các bài viết</h1>
+            <h1 class="main-title">Tạo bài viết mới</h1>
 
             <div class="mt-3">
-                <a href="main.php" class="btn btn-secondary" style="margin-bottom:30px">Quay về</a>
+                <a href="index.php" class="btn btn-secondary" style="margin-bottom:30px">Quay về</a>
             </div>
             
             <div id="message"></div>
