@@ -1,1 +1,0 @@
-import table article trước vào database, sau đó vào file db.php để chỉnh lại tên database kết nối đến, nếu cần
