@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_profile'])) {
 
 <div class="container profile-container">
     <div class="card p-4 shadow">
-        <h3 class="text-center mb-4">Trang cá nhân</h3>
+        <h3 class="text-center mb-4">Profile</h3>
 
         <?php if ($message): ?>
             <div class="alert alert-success text-center"><?= $message ?></div>
