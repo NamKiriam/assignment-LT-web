@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "restaurant";
+$database = "foodiness_db";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 if (!$conn) {
