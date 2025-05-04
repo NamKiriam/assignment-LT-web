@@ -5,21 +5,27 @@ body {
     font-style: normal;
   }
   
-  .header {
-    background-color: #00EDB0;
-    padding: 10px 20px;
-  }
-  
-  .header .navbar-nav .nav-link {
-    color: #073B4C;
-    text-decoration: double;
-    margin-right: 15px;
-  }
-  
-  .header .logo img {
-    max-width: 150px;
-    height: auto;
-  }
+/* Navbar */
+.navbar {
+  background-color: #00c29f !important;
+}
+
+.navbar-brand img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.user-icon {
+  height: 50px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+}
 
 /* body.css */
 :root {

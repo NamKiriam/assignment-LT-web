@@ -1,4 +1,4 @@
-<?php include "../auth/auth_check.php"; ?>
+<?php include "../auth/auth_check.php"; require_once '../include/config.php'?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,28 +22,31 @@
 
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <span class="navbar-brand logo"><img src="/Trang hỏi đáp/res/logo.png" alt="Logo" class="img-fluid"></span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse header-tab-item fw-bold" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
-                      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
-                      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
-                      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
-                      <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-                      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.php">Liên hệ</a></li>
-                      <li class="nav-item"><a class="nav-link" href="../auth/login.php"><i class="bi-person-circle"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+<!-- Navbar -->
+<section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
+  <a class="navbar-brand" href="#">
+    <img src="../Trang_chu/assets/picture/foodiness.png" alt="Logo" height="">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_bai_viet/user/index.php">Bài viết</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.phpphp">Liên hệ</a></li>
+    </ul>
+
+    <a href="../auth/login.php">
+      <img src="../Trang_chu/assets/picture/user_icon.png" alt="Login Icon" class="user-icon">
+    </a>
+
+  </div>
+</section>
 
     <!-- Main Content -->
 <!-- body.html -->
@@ -156,7 +159,7 @@
         <div class="cards">
           <article class="card">
             <div class="img-wrap">
-              <img src="Trang thực đơn/res/thitkhotrung.jpg" alt="Thịt kho trứng" />
+              <img src="res/thitkhotrung.png" alt="Thịt kho trứng" />
             </div>
             <h3>Thịt kho trứng</h3>
             <p class="meta">Món nước, thịt bò, buổi sáng-trưa</p>
@@ -164,7 +167,7 @@
           </article>
           <article class="card">
             <div class="img-wrap">
-              <img src="Trang thực đơn/res/boxao.jpg" alt="Bò xào" />
+              <img src="res/boxao.png" alt="Bò xào" />
             </div>
             <h3>Bò xào</h3>
             <p class="meta">Món khô, thịt heo, buổi sáng</p>
@@ -172,7 +175,7 @@
           </article>
           <article class="card">
             <div class="img-wrap">
-              <img src="Trang thực đơn/res/chagiochien.jpg" alt="Chả giò chiên" />
+              <img src="res/chagiochien.png" alt="Chả giò chiên" />
             </div>
             <h3>Chả giò chiên</h3>
             <p class="meta">Món nước, thịt heo, buổi trưa</p>
@@ -227,60 +230,44 @@
   
 
 
-    <!-- Desktop Footer (Visible on larger screens) -->
-    <footer class="footer desktop-footer d-flex flex-column justify-content-between">
-        <div class="footer-tab d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <span class="logo"><img src="/Trang hỏi đáp/res/logo.png" alt="Logo" class="img-fluid"></span>
-            <div class="footer-tab-item fw-bold d-flex flex-wrap gap-2">
-              <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
-              <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
-              <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
-              <a href="#" class="fw-bold text-dark me-3">Thực đơn</a>
-              <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-              <a href="../Trang_lien_he/contact.php" class="fw-bold text-dark">Liên hệ</a>
-            </div>
+<!-- Footer -->
+<footer class="bg-footer text-dark py-4">
+  <div class="container">
+    <div class="row justify-content-between">
+      <!-- Cột trái: logo + liên hệ -->
+      <div class="col-md-6 mb-4">
+        <a href="#" class="navbar-brand d-block mb-3">
+          <img src="../Trang_chu/assets/picture/foodiness.png" alt="Foodiness Logo" height="50">
+        </a>
+        <h5 class="fw-bold mb-3">Liên hệ</h5>
+        <p><i class="bi bi-envelope me-2"></i>Email: info@foodiness.vn</p>
+        <p><i class="bi bi-telephone me-2"></i>Hotline: 0123 456 789</p>
+        <p><i class="bi bi-geo-alt me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</p>
+        <p><i class="bi bi-building me-2"></i>Văn phòng: Quận 1, TP.HCM</p>
+      </div>
+  
+      <!-- Cột phải: nav + mạng xã hội -->
+      <div class="col-md-5 text-md-end text-start">
+        <nav class="mb-33">
+          <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
+          <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
+          <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
+          <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
+          <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
+          <a href="#" class="fw-bold text-dark">Liên hệ</a>
+        </nav>
+  
+        <h6 class="fw-bold mb-3">Mạng xã hội</h6>
+        <div class="d-flex gap-3 justify-content-md-end justify-content-start">
+          <a href="#"><i class="fab fa-facebook fa-2x social-icon facebook"></i></a>
+          <a href="#"><i class="fab fa-tiktok fa-2x social-icon tiktok"></i></a>
+          <a href="#"><i class="fab fa-x-twitter fa-2x social-icon x"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-2x social-icon instagram"></i></a>
         </div>
-        <div class="contact-info d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start gap-4">
-            <div class="contact-info d-flex flex-column gap-3 align-items-center align-items-md-start">
-                <p><strong>Liên hệ</strong></p>
-                <a href="#" class="d-block mb-2"><i class="bi bi-envelope-fill me-2"></i>Email: <span class="__cf_email__" data-cfemail="402538212d302c2500272d21292c6e232f2d">[email protected]</span></a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-telephone-fill me-2"></i>Hotline: 0123 456 789</a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-geo-alt-fill me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</a>
-                <a href="#" class="d-block"><i class="bi bi-geo-fill me-2"></i>Văn phòng: Quận 1, TP.HCM</a>
-            </div>
-            <div class="social d-flex flex-column align-items-center gap-3">
-                <p><strong>Mạng xã hội</strong></p>
-                <div class="social-icon d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="#"><img src="/Trang hỏi đáp/res/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/tiktok.png" alt="TikTok"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/instargram.png" alt="Instagram"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Mobile Footer (Visible on mobile and tablet) -->
-    <footer class="mobile-footer d-none">
-        <div class="container d-flex justify-content-around align-items-center">
-            <a href="#" class="nav-item text-center">
-                <i class="bi bi-house-door"></i>
-                <span class="d-block">Trang chủ</span>
-            </a>
-            <a href="#" class="nav-item text-center">
-                <i class="bi bi-list"></i>
-                <span class="d-block">Thực đơn</span>
-            </a>
-            <a href="#" class="nav-item text-center">
-                <i class="bi bi-question-circle"></i>
-                <span class="d-block">Hỏi đáp</span>
-            </a>
-            <a href="#" class="nav-item text-center">
-                <i class="bi bi-person"></i>
-                <span class="d-block">Tài khoản</span>
-            </a>
-        </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</footer>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
