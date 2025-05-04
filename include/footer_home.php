@@ -4,7 +4,7 @@
     <div class="row justify-content-between">
       <!-- Cột trái: logo + liên hệ -->
       <div class="col-md-6 mb-4">
-        <a href="#" class="navbar-brand d-block mb-3">
+        <a href="../Trang_chu/home.php" class="navbar-brand d-block mb-3">
           <img src="../Trang_chu/assets/picture/foodiness.png" alt="Foodiness Logo" height="50">
         </a>
         <h5 class="fw-bold mb-3">Liên hệ</h5>

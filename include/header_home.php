@@ -1,8 +1,8 @@
 <!-- <?php session_start(); ?> -->
- 
+
 <!--Navbar-->
 <section class="navbar navbar-expand-lg navbar-dark bg-success px-3">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="../Trang_chu/home.php">
     <img src="../Trang_chu/assets/picture/foodiness.png" alt="Logo">
   </a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
