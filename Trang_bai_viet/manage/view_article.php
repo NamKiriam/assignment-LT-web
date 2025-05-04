@@ -70,7 +70,7 @@
         
         <!-- Nút "Quay về" bên dưới box -->
         <div class="mt-3">
-            <a href="main.php" class="btn btn-secondary" style="margin-bottom:30px">Quay về</a>
+            <a href="index.php" class="btn btn-secondary" style="margin-bottom:30px">Quay về</a>
         </div>
     </main>
     
