@@ -12,6 +12,7 @@
     <ul class="navbar-nav ms-auto">
       <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
 
       <?php if (isset($_SESSION['user_id'])): ?>
         <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>

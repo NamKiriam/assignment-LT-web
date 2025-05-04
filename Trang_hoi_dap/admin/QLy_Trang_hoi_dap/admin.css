@@ -1,0 +1,69 @@
+body {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+#sidebar {
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+}
+
+.sidebar-link {
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff !important;
+}
+
+.sidebar-item.active .sidebar-link {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.comment-card,
+.contact-card {
+  margin-bottom: 15px;
+}
+
+.btn-success,
+.btn-warning,
+.btn-danger {
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: bold;
+}
+
+.pagination .page-link {
+  color: #4a90e2;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 10px;
+  }
+  .btn {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}

@@ -1,4 +1,16 @@
-<?php include "../auth/auth_check.php"; ?>
+<?php
+session_start(); // Đảm bảo session được khởi động
+
+// Debug: Kiểm tra session
+if (!isset($_SESSION['user_name'])) {
+    // Lưu URL hiện tại để quay lại sau khi đăng nhập
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header("Location: ../auth/login.php");
+    exit();
+}
+
+include "../include/header_home.php";
+?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -13,31 +25,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../include/header_footer.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <span class="navbar-brand logo"><img src="/Trang_hoi_dap/res/logo.png" alt="Logo" class="img-fluid"></span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse header-tab-item fw-bold" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_chu/home.php">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_gioi_thieu/index.php">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_hoi_dap/index.php">Hỏi đáp</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Bài viết</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.php">Liên hệ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../auth/login.php"><i class="bi bi-person-circle"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
     <!-- Main Content -->
     <main>
         <div class="container-fluid">
@@ -48,7 +38,8 @@
                 <div class="question-box">
                     <form id="question-form">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="question-name" placeholder="Tên của bạn" required>
+                            <label for="current-user" class="form-label">Tên người dùng</label>
+                            <input type="text" class="form-control" id="current-user" value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <textarea class="form-control" id="question-text" rows="5" placeholder="Câu hỏi của tôi..." required></textarea>
@@ -68,40 +59,10 @@
         </div>
     </main>
 
-    <!-- Desktop Footer (Visible on larger screens) -->
-    <footer class="footer desktop-footer d-flex flex-column justify-content-between">
-        <div class="footer-tab d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <span class="logo"><img src="/Trang_hoi_dap/res/logo.png" alt="Logo" class="img-fluid"></span>
-            <div class="footer-tab-item fw-bold d-flex flex-wrap gap-2">
-                <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
-                <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
-                <a href="#" class="fw-bold text-dark me-3">Hỏi đáp</a>
-                <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
-                <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-                <a href="../Trang_lien_he/contact.php" class="fw-bold text-dark">Liên hệ</a>
-            </div>
-        </div>
-        <div class="contact-info d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start gap-4">
-            <div class="contact-info d-flex flex-column gap-3 align-items-center align-items-md-start">
-                <p><strong>Liên hệ</strong></p>
-                <a href="#" class="d-block mb-2"><i class="bi bi-envelope-fill me-2"></i>Email: <span class="__cf_email__" data-cfemail="402538212d302c2500272d21229e232f2d">[email protected]</span></a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-telephone-fill me-2"></i>Hotline: 0123 456 789</a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-geo-alt-fill me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</a>
-                <a href="#" class="d-block"><i class="bi bi-geo-fill me-2"></i>Văn phòng: Quận 1, TP.HCM</a>
-            </div>
-            <div class="social d-flex flex-column align-items-center gap-3">
-                <p><strong>Mạng xã hội</strong></p>
-                <div class="social-icon d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="#"><img src="/Trang_hoi_dap/res/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="/Trang_hoi_dap/res/tiktok.png" alt="TikTok"></a>
-                    <a href="#"><img src="/Trang_hoi_dap/res/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="/Trang_hoi_dap/res/instargram.png" alt="Instagram"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Desktop Footer -->
+    <?php include("../include/footer_home.php"); ?>
 
-    <!-- Mobile Footer (Visible on mobile and tablet) -->
+    <!-- Mobile Footer -->
     <footer class="mobile-footer d-none">
         <div class="container d-flex justify-content-around align-items-center">
             <a href="#" class="nav-item text-center">
@@ -125,6 +86,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/Trang_hoi_dap/addQuestion.js"></script>
+    <script src="addQuestion.js"></script>
 </body>
 </html>

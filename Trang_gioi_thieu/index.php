@@ -49,7 +49,7 @@
                 <p class="sub-title text-center">Hành trình mang bữa trưa đến từng bàn ăn</p>
                 <div class="row align-items-center">
                     <div class="col-md-6 order-md-2">
-                        <img src="/Trang giới thiệu/res/story.png" class="img-fluid rounded" alt="Câu chuyện dịch vụ">
+                        <img src="assets/picture/about.png" class="img-fluid rounded" alt="Câu chuyện dịch vụ">
                     </div>
                     <div class="col-md-6 order-md-1">
                         <p>Chúng tôi ra đời từ năm 2020, xuất phát từ một ý tưởng đơn giản nhưng đầy ý nghĩa: mang đến những bữa trưa ngon lành, tiện lợi cho những người bận rộn tại đô thị. Với niềm đam mê ẩm thực và sự thấu hiểu nhu cầu của khách hàng, chúng tôi đã xây dựng một dịch vụ đặt thức ăn trưa kết hợp giữa công nghệ hiện đại và sự chăm chút tỉ mỉ trong từng món ăn.</p>
@@ -103,7 +103,7 @@
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 text-center">
-                            <img src="/Trang giới thiệu/res/chef.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Đầu bếp">
+                            <img src="assets/picture/chef.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Đầu bếp">
                             <div class="card-body">
                                 <h5 class="card-title">Đội ngũ đầu bếp</h5>
                                 <p class="card-text">Những đầu bếp tài hoa với hơn 10 năm kinh nghiệm, mang đến những món ăn đậm đà hương vị, từ món Việt truyền thống đến các món Âu hiện đại.</p>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 text-center">
-                            <img src="/Trang giới thiệu/res/delivery.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Giao hàng">
+                            <img src="assets/picture/delivery.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Giao hàng">
                             <div class="card-body">
                                 <h5 class="card-title">Đội giao hàng</h5>
                                 <p class="card-text">Nhanh nhẹn, chuyên nghiệp, luôn đảm bảo bữa trưa đến tay bạn đúng giờ, dù trong giờ cao điểm.</p>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 text-center">
-                            <img src="/Trang giới thiệu/res/help.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Hỗ trợ">
+                            <img src="assets/picture/help.png" class="card-img-top mx-auto mt-4" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;" alt="Hỗ trợ">
                             <div class="card-body">
                                 <h5 class="card-title">Đội hỗ trợ khách hàng</h5>
                                 <p class="card-text">Luôn sẵn sàng 24/7 để giải đáp thắc mắc, hỗ trợ đặt món và xử lý mọi vấn đề nhanh chóng.</p>
@@ -209,38 +209,7 @@
     </main>
 
     <!-- Desktop Footer (Visible on larger screens) -->
-    <footer class="footer desktop-footer d-flex flex-column justify-content-between">
-        <div class="footer-tab d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <span class="logo"><img src="/Trang hỏi đáp/res/logo.png" alt="Logo" class="img-fluid"></span>
-            <div class="footer-tab-item fw-bold d-flex flex-wrap gap-2">
-                <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
-                <a href="#" class="fw-bold text-dark me-3">Giới thiệu</a>
-                <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
-                <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
-                <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
-                <a href="../Trang_lien_he/contact.php" class="fw-bold text-dark">Liên hệ</a>
-            </div>
-        </div>
-        <div class="contact-info d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start gap-4">
-            <div class="contact-info d-flex flex-column gap-3 align-items-center align-items-md-start">
-                <p><strong>Liên hệ</strong></p>
-                <a href="#" class="d-block mb-2"><i class="bi bi-envelope-fill me-2"></i>Email: <span class="__cf_email__" data-cfemail="402538212d302c2500272d21292c6e232f2d">[email protected]</span></a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-telephone-fill me-2"></i>Hotline: 0123 456 789</a>
-                <a href="#" class="d-block mb-2"><i class="bi bi-geo-alt-fill me-2"></i>CS sản xuất: KCN Tân Bình, TP.HCM</a>
-                <a href="#" class="d-block"><i class="bi bi-geo-fill me-2"></i>Văn phòng: Quận 1, TP.HCM</a>
-            </div>
-            <div class="social d-flex flex-column align-items-center gap-3">
-                <p><strong>Mạng xã hội</strong></p>
-                <div class="social-icon d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="#"><img src="/Trang hỏi đáp/res/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/tiktok.png" alt="TikTok"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="/Trang hỏi đáp/res/instargram.png" alt="Instagram"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <?php include("../include/footer_home.php"); ?>
     <!-- Mobile Footer (Visible on mobile and tablet) -->
     <footer class="mobile-footer d-none">
         <div class="container d-flex justify-content-around align-items-center">

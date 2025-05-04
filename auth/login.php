@@ -20,8 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // So sánh mật khẩu đã mã hóa
         if (password_verify($password, $user['Password'])) {
             $_SESSION['user_id'] = $user['ID_user'];
-            $_SESSION['user_name'] = $user['User_name'];
+            $_SESSION['user_name'] = $user['Username']; // Đồng bộ với tên cột trong database
             $_SESSION['email'] = $user['Email'];
+
+            // Kiểm tra nếu có URL để quay lại
+            if (isset($_SESSION['redirect_url'])) {
+                $redirect_url = $_SESSION['redirect_url'];
+                unset($_SESSION['redirect_url']);
+                header("Location: $redirect_url");
+                exit();
+            }
 
             header("Location: ../Trang_chu/home.php");
             exit();
