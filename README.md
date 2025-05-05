@@ -1,5 +1,3 @@
-
-```markdown
 # Cách chạy trang web
 
 Để chạy trang web này trên máy tính của bạn, hãy làm theo các bước sau:
