@@ -20,6 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `foodiness_db`
 --
+-- Tạo database nếu chưa tồn tại
+CREATE DATABASE IF NOT EXISTS foodiness_db;
+
+-- Chọn sử dụng database đó
+USE foodiness_db;
 
 -- --------------------------------------------------------
 
