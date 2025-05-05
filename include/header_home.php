@@ -16,7 +16,7 @@
 
       <?php if (isset($_SESSION['user_id'])): ?>
         <li class="nav-item"><a class="nav-link text-white" href="../Trang_thuc_don/index.php">Thực đơn</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="../Trang_bai_viet/index.php">Bài viết</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="../Trang_bai_viet/user/index.php">Bài viết</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="../Trang_lien_he/contact.php">Liên hệ</a></li>
         <li class="nav-item"><a class="nav-link text-white fw-semibold" href="../auth/logout.php">Đăng xuất</a></li>
         <a href="../Trang_profile/profile.php">
