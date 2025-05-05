@@ -1,3 +1,17 @@
+<?php
+session_start(); // Đảm bảo session được khởi động
+
+// Debug: Kiểm tra session
+if (!isset($_SESSION['user_name'])) {
+    // Lưu URL hiện tại để quay lại sau khi đăng nhập
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header("Location: ../../auth/login.php");
+    exit();
+}
+
+include "../../include/header_home.php";
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -55,26 +69,6 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <span class="navbar-brand logo"><img src="../res/logo.png" alt="Logo" class="img-fluid"></span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse header-tab-item fw-bold" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../../Trang_chu/home.php">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../../Trang_hoi_dap">Hỏi đáp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../../Trang_thuc_don">Thực đơn</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php">Bài viết</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../../Trang_gioi_thieu">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
     <!-- Main Content -->
     <main>

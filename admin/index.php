@@ -42,7 +42,7 @@ $contactCount = $connection->query("SELECT COUNT(*) AS total FROM contacts")->fe
         <li class="nav-item"><a class="nav-link text-white" href="home/manage_home.php"><i class="bi bi-house me-2"></i> Quản lý Trang Chủ</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="contact/manage_contact.php"><i class="bi bi-envelope me-2"></i> Quản lý Liên hệ</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="admin_qa_management.php"><i class="bi bi-question-circle me-2"></i> Quản lý Hỏi/Đáp</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-info-circle me-2"></i> Giới thiệu</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="posts/index.php"><i class="bi bi-newspaper me-2"></i> Quản lý Bài viết</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="../auth/logout.php"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</a></li>
       </ul>
     </nav>
