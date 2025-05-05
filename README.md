@@ -33,7 +33,7 @@ C:\xampp\htdocs\\
 
 ```
 
-[http://localhost/Trang\_chu/home.php](http://localhost/Trang_chu/home.php)
+[http://localhost/Trang_chu/home.php](http://localhost/Trang_chu/home.php)
 
 ```
 
