@@ -28,11 +28,9 @@ $connection->close();
       <div class="col-md-5 text-md-end text-start">
         <nav class="mb-33">
           <a href="../Trang_chu/home.php" class="fw-bold text-dark me-3">Trang chủ</a>
-          <a href="../Trang_gioi_thieu/index.php" class="fw-bold text-dark me-3">Giới thiệu</a>
 
           <?php if (isset($_SESSION['user_id'])): ?>
             <a href="../Trang_hoi_dap/index.php" class="fw-bold text-dark me-3">Hỏi đáp</a>
-            <a href="../Trang_thuc_don/index.php" class="fw-bold text-dark me-3">Thực đơn</a>
             <a href="#" class="fw-bold text-dark me-3">Bài viết</a>
             <a href="../Trang_lien_he/contact.php" class="fw-bold text-dark">Liên hệ</a>
           <?php endif; ?>
