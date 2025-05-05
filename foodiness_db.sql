@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 05, 2025 at 03:40 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -9,176 +18,200 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: foodiness_db
+-- Database: `foodiness_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng admin
+-- Table structure for table `article`
 --
 
-CREATE TABLE admin (
-  ID_admin int(11) NOT NULL,
-  Admin_name varchar(50) NOT NULL,
-  Password varchar(255) NOT NULL,
-  Email varchar(100) DEFAULT NULL
+CREATE TABLE `article` (
+  `id` varchar(20) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `update_date` datetime NOT NULL,
+  `content` text DEFAULT NULL,
+  `like` int(11) NOT NULL DEFAULT 0 CHECK (`like` >= 0),
+  `dislike` int(11) NOT NULL DEFAULT 0 CHECK (`dislike` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng admin
+-- Dumping data for table `article`
 --
 
-INSERT INTO admin (ID_admin, Admin_name, Password, Email) VALUES
-(1, 'Zackerville', '04072004', NULL),
-(2, 'quanh', '$2y$10$ZmkztvywIefbkgYy0.qfjuod9mI3QrGcJRXmz/iDeDV...\r\n\r\n', NULL);
+INSERT INTO `article` (`id`, `title`, `author`, `update_date`, `content`, `like`, `dislike`) VALUES
+('A20250503090000', 'Best Pho Recipe', 'Chef Nam', '2025-05-03 09:00:00', 'Here is the secret to the best pho...', 0, 0),
+('A20250503091000', 'Delicious Banh Mi', 'Chef Linh', '2025-05-04 10:37:50', 'Making the perfect banh mi is all about the bread...', 0, 0),
+('A20250503092000', 'Vietnamese Coffee Guide', 'Barista Hoa', '2025-05-03 09:20:00', 'Strong, sweet, and creamy — learn to make it right.', 0, 0),
+('A20250504115057', 'The quick brown fox jumps over the lazy dog.', 'Lebron James', '2025-05-04 16:50:57', 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n                    The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng comment
+-- Table structure for table `comment`
 --
 
-CREATE TABLE comment (
-  ID_comment int(11) NOT NULL,
-  ID_post int(11) NOT NULL,
-  ID_user int(11) NOT NULL,
-  Content text NOT NULL,
-  Created_at timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng contacts
---
-
-CREATE TABLE contacts (
-  id int(11) NOT NULL,
-  user_id int(11) NOT NULL,
-  message text DEFAULT NULL,
-  status enum('unread','read','replied') DEFAULT 'unread',
-  created_at timestamp NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `comment` (
+  `ID_comment` int(11) NOT NULL,
+  `ID_post` int(11) NOT NULL,
+  `ID_user` int(11) NOT NULL,
+  `Content` text NOT NULL,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng dessert
+-- Table structure for table `contacts`
 --
 
-CREATE TABLE dessert (
-  ID_dessert int(11) NOT NULL,
-  ID_meal int(11) NOT NULL
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` text DEFAULT NULL,
+  `status` enum('unread','read','replied') DEFAULT 'unread',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `user_id`, `message`, `status`, `created_at`) VALUES
+(3, 9, 'hello', 'unread', '2025-05-05 09:16:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dessert`
+--
+
+CREATE TABLE `dessert` (
+  `ID_dessert` int(11) NOT NULL,
+  `ID_meal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng dish
+-- Table structure for table `dish`
 --
 
-CREATE TABLE dish (
-  ID_dish int(11) NOT NULL,
-  Name varchar(100) NOT NULL
+CREATE TABLE `dish` (
+  `id` bigint(19) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `price` float NOT NULL,
+  `category` varchar(20) NOT NULL,
+  `meat` varchar(10) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `img_url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dish`
+--
+
+INSERT INTO `dish` (`id`, `name`, `price`, `category`, `meat`, `description`, `img_url`) VALUES
+(1, 'Thịt kho trứng', 40000, 'Món khô', 'Thịt heo', '', ''),
+(2, 'Bò xào', 35000, 'Món khô', 'Thịt bò', '', ''),
+(3, 'Chả giò chiên', 35000, 'Món khô', 'Thịt heo', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_dish`
+--
+
+CREATE TABLE `main_dish` (
+  `ID_main` int(11) NOT NULL,
+  `ID_meal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng main_dish
+-- Table structure for table `meal`
 --
 
-CREATE TABLE main_dish (
-  ID_main int(11) NOT NULL,
-  ID_meal int(11) NOT NULL
+CREATE TABLE `meal` (
+  `ID_meal` int(11) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Price` decimal(10,2) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `Image_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng meal
+-- Table structure for table `order`
 --
 
-CREATE TABLE meal (
-  ID_meal int(11) NOT NULL,
-  Name varchar(100) NOT NULL,
-  Price decimal(10,2) NOT NULL,
-  Description text DEFAULT NULL,
-  Image_url varchar(255) DEFAULT NULL
+CREATE TABLE `order` (
+  `ID_order` int(11) NOT NULL,
+  `ID_user` int(11) NOT NULL,
+  `ID_meal` int(11) NOT NULL,
+  `Quantity` int(11) DEFAULT 1,
+  `Order_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng order
+-- Table structure for table `post`
 --
 
-CREATE TABLE order (
-  ID_order int(11) NOT NULL,
-  ID_user int(11) NOT NULL,
-  ID_meal int(11) NOT NULL,
-  Quantity int(11) DEFAULT 1,
-  Order_date timestamp NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `post` (
+  `ID_post` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Content` text NOT NULL,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ID_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng post
+-- Table structure for table `question`
 --
 
-CREATE TABLE post (
-  ID_post int(11) NOT NULL,
-  Title varchar(255) NOT NULL,
-  Content text NOT NULL,
-  Created_at timestamp NOT NULL DEFAULT current_timestamp(),
-  ID_user int(11) DEFAULT NULL
+CREATE TABLE `question` (
+  `ID_question` int(11) NOT NULL,
+  `ID_user` int(11) NOT NULL,
+  `Content` text NOT NULL,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`ID_question`, `ID_user`, `Content`, `Created_at`) VALUES
+(27, 9, 'xin chào', '2025-05-05 09:05:47'),
+(28, 9, 'giao trong bao lâu?', '2025-05-05 09:10:33'),
+(29, 9, 'Mấy giờ rồi?', '2025-05-05 12:52:39');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng question
+-- Table structure for table `site_content`
 --
 
-CREATE TABLE question (
-  ID_question int(11) NOT NULL,
-  ID_user int(11) NOT NULL,
-  Content text NOT NULL,
-  Created_at timestamp NOT NULL DEFAULT current_timestamp(),
-  answered tinyint(1) DEFAULT 0,
-  answer text DEFAULT NULL
+CREATE TABLE `site_content` (
+  `id` int(11) NOT NULL,
+  `page` varchar(50) NOT NULL,
+  `section` varchar(50) NOT NULL,
+  `content` text NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng question
+-- Dumping data for table `site_content`
 --
 
-INSERT INTO question (ID_question, ID_user, Content, Created_at, answered, answer) VALUES
-(22, 5, 'Khi nào đơn hàng của tôi được giao ?', '2025-05-05 05:02:55', 0, NULL),
-(23, 5, 'Trong menu có các món chay không ?', '2025-05-05 05:03:07', 0, NULL),
-(24, 5, 'Hôm nay menu có gì ?', '2025-05-05 06:23:22', 0, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng site_content
---
-
-CREATE TABLE site_content (
-  id int(11) NOT NULL,
-  page varchar(50) NOT NULL,
-  section varchar(50) NOT NULL,
-  content text NOT NULL,
-  updated_at timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng site_content
---
-
-INSERT INTO site_content (id, page, section, content, updated_at) VALUES
+INSERT INTO `site_content` (`id`, `page`, `section`, `content`, `updated_at`) VALUES
 (16, 'home', 'hero_title', 'CƠM TRƯA VĂN PHÒNG FOODINESS', '2025-05-05 07:04:04'),
 (17, 'home', 'hero_intro', 'Cơm trưa văn phòng không chỉ đơn giản là một bữa ăn thông thường mà còn là sự kết hợp giữa chất lượng và hương vị tinh tế. Món cơm được chế biến từ nguyên liệu tươi ngon, nấu kỹ càng để đảm bảo dinh dưỡng và ngon miệng.', '2025-05-05 07:02:54'),
 (18, 'home', 'hero_button', 'Đặt món ngay', '2025-05-05 07:02:54'),
@@ -192,273 +225,236 @@ INSERT INTO site_content (id, page, section, content, updated_at) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng soup
+-- Table structure for table `soup`
 --
 
-CREATE TABLE soup (
-  ID_soup int(11) NOT NULL,
-  ID_meal int(11) NOT NULL
+CREATE TABLE `soup` (
+  `ID_soup` int(11) NOT NULL,
+  `ID_meal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng user
+-- Table structure for table `user`
 --
 
-CREATE TABLE user (
-  ID_user int(11) NOT NULL,
-  Username varchar(100) NOT NULL,
-  Email varchar(100) DEFAULT NULL,
-  Password varchar(255) NOT NULL,
-  Gender enum('Nam','Nữ','Khác') DEFAULT 'Nam',
-  Birthday date DEFAULT NULL,
-  Role enum('client','admin') DEFAULT 'client',
-  Created_at timestamp NOT NULL DEFAULT current_timestamp(),
-  Avatar varchar(255) DEFAULT 'default_avatar.png',
-  Address text DEFAULT NULL
+CREATE TABLE `user` (
+  `ID_user` int(11) NOT NULL,
+  `Username` varchar(100) NOT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Gender` enum('Nam','Nữ','Khác') DEFAULT 'Nam',
+  `Birthday` date DEFAULT NULL,
+  `Role` enum('client','admin') DEFAULT 'client',
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng user
+-- Dumping data for table `user`
 --
 
-INSERT INTO user (ID_user, Username, Email, Password, Gender, Birthday, Role, Created_at, Avatar, Address) VALUES
-(5, 'quanh', 'quanganhngo2211@gmail.com', '$2y$10$euFcv1Wcv8d5tD0CLdT5M.O1LDIC1uVy7rAcf5THSQ3ow5PqVhAsm', 'Nam', '2004-11-22', 'client', '2025-05-04 01:21:23', 'default_avatar.png', NULL),
-(6, 'meow', 'anh.ngobk2211@hcmut.edu.vn', '$2y$10$ZmkztvywIefbkgYy0.qfjuod9mI3QrGcJRXmz/iDeDVnmn/Sr7UdK', 'Nam', '2004-11-22', 'admin', '2025-05-04 01:22:07', 'default_avatar.png', NULL),
-(8, 'Tiến', 'zack1_admin@gmail.com', '$2y$10$YUCZHaWzjDem8DbvOFCL1eGOKbrpCqV9dfWjsI/c34pAwGlhgFkDG', 'Nam', '2004-11-22', 'admin', '2025-05-05 03:14:08', 'default_avatar.png', NULL);
+INSERT INTO `user` (`ID_user`, `Username`, `Email`, `Password`, `Gender`, `Birthday`, `Role`, `Created_at`) VALUES
+(1, 'Trần Ngọc Khánh Huy', 'huybacdau123@gmail.com', '$2y$10$yTOuuxYSHYgJtoa1YUrfsOV3YfAX47EE4t.hrs03F0qgQXCKmOmiC', 'Nam', '2004-02-20', 'admin', '2025-05-04 11:46:14'),
+(9, 'User Huy', 'hehe@gmail.com', '$2y$10$7NZkpajLWOquXzPtmi4Eruvx7ccyU0v1BaqpxuGTsyECdfdxllgNK', 'Nam', '2025-05-15', 'client', '2025-05-05 08:56:22');
 
 --
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng admin
---
-ALTER TABLE admin
-  ADD PRIMARY KEY (ID_admin),
-  ADD UNIQUE KEY Admin_name (Admin_name),
-  ADD UNIQUE KEY Email (Email);
-
---
--- Chỉ mục cho bảng comment
---
-ALTER TABLE comment
-  ADD PRIMARY KEY (ID_comment),
-  ADD KEY ID_post (ID_post),
-  ADD KEY ID_user (ID_user);
-
---
--- Chỉ mục cho bảng contacts
---
-ALTER TABLE contacts
-  ADD PRIMARY KEY (id),
-  ADD KEY contacts_ibfk_1 (user_id);
-
---
--- Chỉ mục cho bảng dessert
---
-ALTER TABLE dessert
-  ADD PRIMARY KEY (ID_dessert),
-  ADD KEY ID_meal (ID_meal);
-
---
--- Chỉ mục cho bảng dish
---
-ALTER TABLE dish
-  ADD PRIMARY KEY (ID_dish);
-
---
--- Chỉ mục cho bảng main_dish
---
-ALTER TABLE main_dish
-  ADD PRIMARY KEY (ID_main),
-  ADD KEY ID_meal (ID_meal);
-
---
--- Chỉ mục cho bảng meal
---
-ALTER TABLE meal
-  ADD PRIMARY KEY (ID_meal);
-
---
--- Chỉ mục cho bảng order
---
-ALTER TABLE order
-  ADD PRIMARY KEY (ID_order),
-  ADD KEY ID_user (ID_user),
-  ADD KEY ID_meal (ID_meal);
-
---
--- Chỉ mục cho bảng post
---
-ALTER TABLE post
-  ADD PRIMARY KEY (ID_post),
-  ADD KEY ID_user (ID_user);
-
---
--- Chỉ mục cho bảng question
---
-ALTER TABLE question
-  ADD PRIMARY KEY (ID_question),
-  ADD KEY ID_user (ID_user);
-
---
--- Chỉ mục cho bảng site_content
---
-ALTER TABLE site_content
-  ADD PRIMARY KEY (id),
-  ADD UNIQUE KEY unique_section (page,`section`);
-
---
--- Chỉ mục cho bảng soup
---
-ALTER TABLE soup
-  ADD PRIMARY KEY (ID_soup),
-  ADD KEY ID_meal (ID_meal);
-
---
--- Chỉ mục cho bảng user
---
-ALTER TABLE user
-  ADD PRIMARY KEY (ID_user),
-  ADD UNIQUE KEY Email (Email);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng admin
+-- Indexes for table `article`
 --
-ALTER TABLE admin
-  MODIFY ID_admin int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho bảng comment
+-- Indexes for table `comment`
 --
-ALTER TABLE comment
-  MODIFY ID_comment int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`ID_comment`),
+  ADD KEY `ID_post` (`ID_post`),
+  ADD KEY `ID_user` (`ID_user`);
 
 --
--- AUTO_INCREMENT cho bảng contacts
+-- Indexes for table `contacts`
 --
-ALTER TABLE contacts
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contacts_ibfk_1` (`user_id`);
 
 --
--- AUTO_INCREMENT cho bảng dessert
+-- Indexes for table `dessert`
 --
-ALTER TABLE dessert
-  MODIFY ID_dessert int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dessert`
+  ADD PRIMARY KEY (`ID_dessert`),
+  ADD KEY `ID_meal` (`ID_meal`);
 
 --
--- AUTO_INCREMENT cho bảng dish
+-- Indexes for table `dish`
 --
-ALTER TABLE dish
-  MODIFY ID_dish int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dish`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`),
+  ADD KEY `price` (`price`),
+  ADD KEY `category` (`category`),
+  ADD KEY `meat` (`meat`);
 
 --
--- AUTO_INCREMENT cho bảng main_dish
+-- Indexes for table `main_dish`
 --
-ALTER TABLE main_dish
-  MODIFY ID_main int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `main_dish`
+  ADD PRIMARY KEY (`ID_main`),
+  ADD KEY `ID_meal` (`ID_meal`);
 
 --
--- AUTO_INCREMENT cho bảng meal
+-- Indexes for table `meal`
 --
-ALTER TABLE meal
-  MODIFY ID_meal int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `meal`
+  ADD PRIMARY KEY (`ID_meal`);
 
 --
--- AUTO_INCREMENT cho bảng order
+-- Indexes for table `order`
 --
-ALTER TABLE order
-  MODIFY ID_order int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`ID_order`),
+  ADD KEY `ID_user` (`ID_user`),
+  ADD KEY `ID_meal` (`ID_meal`);
 
 --
--- AUTO_INCREMENT cho bảng post
+-- Indexes for table `post`
 --
-ALTER TABLE post
-  MODIFY ID_post int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`ID_post`),
+  ADD KEY `ID_user` (`ID_user`);
 
 --
--- AUTO_INCREMENT cho bảng question
+-- Indexes for table `question`
 --
-ALTER TABLE question
-  MODIFY ID_question int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`ID_question`),
+  ADD KEY `ID_user` (`ID_user`);
 
 --
--- AUTO_INCREMENT cho bảng site_content
+-- Indexes for table `site_content`
 --
-ALTER TABLE site_content
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+ALTER TABLE `site_content`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_section` (`page`,`section`);
 
 --
--- AUTO_INCREMENT cho bảng soup
+-- Indexes for table `soup`
 --
-ALTER TABLE soup
-  MODIFY ID_soup int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `soup`
+  ADD PRIMARY KEY (`ID_soup`),
+  ADD KEY `ID_meal` (`ID_meal`);
 
 --
--- AUTO_INCREMENT cho bảng user
+-- Indexes for table `user`
 --
-ALTER TABLE user
-  MODIFY ID_user int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID_user`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng comment
+-- AUTO_INCREMENT for table `comment`
 --
-ALTER TABLE comment
-  ADD CONSTRAINT comment_ibfk_1 FOREIGN KEY (ID_post) REFERENCES post (ID_post),
-  ADD CONSTRAINT comment_ibfk_2 FOREIGN KEY (ID_user) REFERENCES user (ID_user);
+ALTER TABLE `comment`
+  MODIFY `ID_comment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng contacts
+-- AUTO_INCREMENT for table `contacts`
 --
-ALTER TABLE contacts
-  ADD CONSTRAINT contacts_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (ID_user) ON DELETE CASCADE;
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Các ràng buộc cho bảng dessert
+-- AUTO_INCREMENT for table `dessert`
 --
-ALTER TABLE dessert
-  ADD CONSTRAINT dessert_ibfk_1 FOREIGN KEY (ID_meal) REFERENCES meal (ID_meal);
+ALTER TABLE `dessert`
+  MODIFY `ID_dessert` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng main_dish
+-- AUTO_INCREMENT for table `main_dish`
 --
-ALTER TABLE main_dish
-  ADD CONSTRAINT main_dish_ibfk_1 FOREIGN KEY (ID_meal) REFERENCES meal (ID_meal);
+ALTER TABLE `main_dish`
+  MODIFY `ID_main` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng order
+-- AUTO_INCREMENT for table `meal`
 --
-ALTER TABLE order
-  ADD CONSTRAINT order_ibfk_1 FOREIGN KEY (ID_user) REFERENCES user (ID_user),
-  ADD CONSTRAINT order_ibfk_2 FOREIGN KEY (ID_meal) REFERENCES meal (ID_meal);
+ALTER TABLE `meal`
+  MODIFY `ID_meal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng post
+-- AUTO_INCREMENT for table `order`
 --
-ALTER TABLE post
-  ADD CONSTRAINT post_ibfk_1 FOREIGN KEY (ID_user) REFERENCES user (ID_user);
+ALTER TABLE `order`
+  MODIFY `ID_order` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng question
+-- AUTO_INCREMENT for table `post`
 --
-ALTER TABLE question
-  ADD CONSTRAINT question_ibfk_1 FOREIGN KEY (ID_user) REFERENCES user (ID_user);
+ALTER TABLE `post`
+  MODIFY `ID_post` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho bảng soup
+-- AUTO_INCREMENT for table `question`
 --
-ALTER TABLE soup
-  ADD CONSTRAINT soup_ibfk_1 FOREIGN KEY (ID_meal) REFERENCES meal (ID_meal);
+ALTER TABLE `question`
+  MODIFY `ID_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `site_content`
+--
+ALTER TABLE `site_content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `soup`
+--
+ALTER TABLE `soup`
+  MODIFY `ID_soup` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ID_user`) REFERENCES `user` (`ID_user`);
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `user` (`ID_user`),
+  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`ID_meal`) REFERENCES `meal` (`ID_meal`);
+
+--
+-- Constraints for table `question`
+--
+ALTER TABLE `question`
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `user` (`ID_user`);
+
+--
+-- Constraints for table `soup`
+--
+ALTER TABLE `soup`
+  ADD CONSTRAINT `soup_ibfk_1` FOREIGN KEY (`ID_meal`) REFERENCES `meal` (`ID_meal`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
