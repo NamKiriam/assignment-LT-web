@@ -23,11 +23,11 @@
                 </button>
                 <div class="collapse navbar-collapse header-tab-item fw-bold" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Hỏi đáp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Thực đơn</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Bài viết</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../Trang_chu/home.php">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../Trang_hoi_dap">Hỏi đáp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../Trang_thuc_don">Thực đơn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Bài viết</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../Trang_gioi_thieu">Giới thiệu</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a></li>
                     </ul>
                 </div>
