@@ -6,8 +6,8 @@ $questions = [];
 $error = '';
 
 try {
-    // Truy vấn trực tiếp từ database
-    $stmt = $connection->prepare("SELECT q.ID_question, q.Content, q.Created_at, q.answered, q.answer, u.username
+    // Truy vấn trực tiếp từ database, bỏ cột answered và answer
+    $stmt = $connection->prepare("SELECT q.ID_question, q.Content, q.Created_at, u.Username
                                   FROM question q
                                   JOIN user u ON q.ID_user = u.ID_user
                                   ORDER BY q.Created_at DESC");
@@ -19,11 +19,9 @@ try {
         while ($row = $result->fetch_assoc()) {
             $questions[] = [
                 'id' => $row['ID_question'],
-                'name' => $row['username'],
+                'name' => $row['Username'],
                 'text' => $row['Content'],
-                'date' => date('M d, H:i', strtotime($row['Created_at'])),
-                'answered' => (bool)$row['answered'],
-                'answer' => $row['answer']
+                'date' => date('M d, H:i', strtotime($row['Created_at']))
             ];
         }
     } else {
@@ -52,7 +50,6 @@ try {
     td small {
       color: gray;
     }
-    .edit-mode { display: none; }
   </style>
 
   <script>
@@ -66,47 +63,6 @@ try {
           });
       }
     }
-
-    function submitAnswer(id) {
-      const input = document.getElementById('answer-' + id);
-      const answer = input.value.trim();
-      if (!answer) return alert("Vui lòng nhập câu trả lời.");
-
-      const formData = new FormData();
-      formData.append('question_id', id);
-      formData.append('question_text', answer);
-      formData.append('action', 'update_answer'); // Thêm action để gọi đúng updateQuestion.php
-
-      fetch('../Trang_hoi_dap/updateQuestion.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-        alert(data.message);
-        if (data.success) location.reload();
-      });
-    }
-
-    function editAnswer(id) {
-      const input = document.getElementById('answer-' + id);
-      const editBtn = document.getElementById('edit-btn-' + id);
-      const submitBtn = document.getElementById('submit-btn-' + id);
-
-      // Hiển thị input và nút gửi, ẩn nút chỉnh sửa
-      input.classList.remove('edit-mode');
-      editBtn.classList.add('edit-mode');
-      submitBtn.classList.remove('edit-mode');
-
-      // Điền giá trị hiện tại vào input
-      fetch('../Trang_hoi_dap/getQuestion.php?id=' + id)
-        .then(res => res.json())
-        .then(data => {
-          if (data.success && data.answer) {
-            input.value = data.answer;
-          }
-        });
-    }
   </script>
 </head>
 <body>
@@ -119,7 +75,7 @@ try {
       <ul class="nav flex-column mt-3">
         <li class="nav-item"><a class="nav-link text-white" href="index.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
         <li class="nav-item"><a class="nav-link text-white active" href="admin_qa_management.php"><i class="bi bi-question-circle me-2"></i> Quản lý Hỏi/Đáp</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/Trang_chu/home.php"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</a></li>
       </ul>
     </nav>
 
@@ -149,7 +105,6 @@ try {
                   <th>Người hỏi</th>
                   <th>Câu hỏi</th>
                   <th>Ngày</th>
-                  <th>Trạng thái</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -160,25 +115,7 @@ try {
                     <td><?= nl2br(htmlspecialchars($q['text'])) ?></td>
                     <td><?= htmlspecialchars($q['date']) ?></td>
                     <td>
-                      <?= $q['answered'] ? '✅ Đã trả lời' : '❌ Chưa trả lời' ?>
-                      <?php if ($q['answered'] && $q['answer']): ?>
-                        <br><small>💬 <?= htmlspecialchars($q['answer']) ?></small>
-                      <?php endif; ?>
-                    </td>
-                    <td>
                       <button class="btn btn-sm btn-danger mb-1" onclick="deleteQuestion(<?= $q['id'] ?>)">Xóa</button>
-                      <?php if (!$q['answered']): ?>
-                        <div class="input-group input-group-sm mt-2">
-                          <input type="text" class="form-control" id="answer-<?= $q['id'] ?>" placeholder="Trả lời...">
-                          <button class="btn btn-success" id="submit-btn-<?= $q['id'] ?>" onclick="submitAnswer(<?= $q['id'] ?>)">Gửi</button>
-                        </div>
-                      <?php else: ?>
-                        <div class="input-group input-group-sm mt-2">
-                          <input type="text" class="form-control edit-mode" id="answer-<?= $q['id'] ?>" placeholder="Chỉnh sửa...">
-                          <button class="btn btn-warning edit-mode" id="submit-btn-<?= $q['id'] ?>" onclick="submitAnswer(<?= $q['id'] ?>)">Lưu</button>
-                          <button class="btn btn-info" id="edit-btn-<?= $q['id'] ?>" onclick="editAnswer(<?= $q['id'] ?>)">Chỉnh sửa</button>
-                        </div>
-                      <?php endif; ?>
                     </td>
                   </tr>
                 <?php endforeach; ?>
