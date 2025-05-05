@@ -18,7 +18,7 @@ Sau khi clone repo thành công, di chuyển tất cả các file trong repo và
 
 ```
 
-C:\xampp\htdocs\\
+C:\xampp\htdocs\
 
 ```
 
