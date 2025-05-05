@@ -17,6 +17,77 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
+<style>
+    @media (max-width: 768px) {
+    /* Adjust container padding */
+    .container {
+        padding: 10px;
+    }
+
+    /* Sidebar adjustments */
+    .sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    /* Main content full width */
+    .main-content {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Meal section adjustments */
+    .meal-section {
+        padding: 10px;
+    }
+
+    .meal-options div {
+        margin-bottom: 10px;
+    }
+
+    /* Popular dishes grid */
+    .popular-dishes {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column for small screens */
+        gap: 10px;
+    }
+
+    .dish-card {
+        text-align: center;
+    }
+
+    .dish-card img {
+        width: 100%; /* Make images responsive */
+        height: auto;
+    }
+
+    /* Buttons */
+    .add-meal-btn, .order-btn {
+        width: 100%; /* Full-width buttons */
+        margin-top: 10px;
+    }
+
+    /* Category tabs */
+    .category-tabs button {
+        width: 100%; /* Full-width sorting button */
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    select, input[type="text"] {
+        width: 100%; /* Full-width inputs */
+    }
+}
+</style>
 <body>
 
   <!-- Header bạn đã có sẵn -->
@@ -27,7 +98,7 @@
         <div class="sidebar">
             <h3>GIÁ:</h3>
             <label><input type="range" min="5000" max="500000" value="5000"> 5.000 - 500.000 VND</label>
-            <label><input type="checkbox"> Món Khô</label>
+            <label><input type="checkbox"> Món khô</label>
             <label><input type="checkbox"> Món Nước</label>
             <h3>THỊT:</h3>
             <label><input type="checkbox"> Bò</label>
@@ -57,38 +128,43 @@
                 <div class="meal-options">
                     <div>
                         <label>Món chính</label>
-                        <div class="autocomplete">
-                            <input type="text" id="main-dish-1" placeholder="Chọn món">
-                            <div id="autocomplete-list-1" class="autocomplete-items"></div>
-                        </div>
+                        <select>
+                            <option>Chọn món chính</option>    
+                            <option>Thịt kho trứng</option>
+                            <option>Bò xào</option>
+                            <option>Chả giò chiên</option>
+                        </select>
                     </div>
                     <div>
                         <label>Canh</label>
                         <select>
-                            <option>Chọn nước</option>
-                            <option>Canh rau</option>
-                            <option>Canh chua</option>
+                            <option>Chọn món canh</option>
+                            <option>Canh cua mồng tơi</option>
+                            <option>Canh khổ qua</option>
+                            
                         </select>
                     </div>
                     <div>
                         <label>Giải khát</label>
                         <select>
-                            <option>Chọn nước</option>
-                            <option>Nước ngọt</option>
-                            <option>Cafe</option>
+                            <option>Chọn nước uống</option>
+                            <option>Nước suối</option>
+                            <option>Cafe đen đá</option>
+                            
                         </select>
                     </div>
                     <div>
                         <label>Tráng miệng</label>
                         <select>
-                            <option>Trái cây, đồ ngọt...</option>
-                            <option>Trái cây</option>
-                            <option>Bánh ngọt</option>
+                            <option>Chọn món tráng miệng</option>
+                            <option>Trái cây (tùy ngày)</option>
+                            <option>Sữa chua</option>
+                            <option>Kem</option>
                         </select>
                     </div>
                     <button class="add-meal-btn" onclick="addMealSection()">+1</button>
                 </div>
-                <button class="order-btn">Đặt món</button>
+                <button class="order-btn" href="../Trang_thanh_toan/index.php">Đặt món</button>
             </div>
 
             <!-- Popular Dishes -->
