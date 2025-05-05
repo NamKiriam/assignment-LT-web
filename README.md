@@ -1,4 +1,3 @@
-Here’s the complete content for your `README.md` file, which you can directly copy and paste into your GitHub repository:
 
 ```markdown
 # Cách chạy trang web
@@ -50,4 +49,3 @@ Chúc bạn thành công!
 
 ```
 
-This will serve as your `README.md` file for the GitHub repository. Make sure to replace `<URL_of_the_repository>` with the actual URL of your repository if needed.
