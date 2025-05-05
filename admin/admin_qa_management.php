@@ -1,31 +1,36 @@
 <?php
+require_once '../include/config.php'; // Đảm bảo kết nối database
+
 // Khởi tạo mảng câu hỏi
 $questions = [];
 $error = '';
 
 try {
-    // Sử dụng cURL để gọi getAllQuestion.php
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://localhost/BTL/admin/getAllQuestion.php'); // Đường dẫn tuyệt đối
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
+    // Truy vấn trực tiếp từ database
+    $stmt = $connection->prepare("SELECT q.ID_question, q.Content, q.Created_at, q.answered, q.answer, u.username
+                                  FROM question q
+                                  JOIN user u ON q.ID_user = u.ID_user
+                                  ORDER BY q.Created_at DESC");
 
-    if (curl_errno($ch)) {
-        $error = "Lỗi cURL: " . curl_error($ch);
-    } else {
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($httpCode >= 400) {
-            $error = "Lỗi server: Mã HTTP $httpCode";
-        } else {
-            $data = json_decode($response, true);
-            if (is_array($data) && isset($data['success']) && $data['success']) {
-                $questions = $data['questions'];
-            } else {
-                $error = isset($data['error']) ? $data['error'] : "Dữ liệu phản hồi không hợp lệ hoặc không thành công.";
-            }
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        $questions = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $questions[] = [
+                'id' => $row['ID_question'],
+                'name' => $row['username'],
+                'text' => $row['Content'],
+                'date' => date('M d, H:i', strtotime($row['Created_at'])),
+                'answered' => (bool)$row['answered'],
+                'answer' => $row['answer']
+            ];
         }
+    } else {
+        $error = "Lỗi khi truy vấn dữ liệu: " . $stmt->error;
     }
-    curl_close($ch);
+    $stmt->close();
+    $connection->close();
 } catch (Exception $e) {
     $error = "Lỗi: " . $e->getMessage();
 }
@@ -70,6 +75,7 @@ try {
       const formData = new FormData();
       formData.append('question_id', id);
       formData.append('question_text', answer);
+      formData.append('action', 'update_answer'); // Thêm action để gọi đúng updateQuestion.php
 
       fetch('../Trang_hoi_dap/updateQuestion.php', {
         method: 'POST',
@@ -93,7 +99,7 @@ try {
       submitBtn.classList.remove('edit-mode');
 
       // Điền giá trị hiện tại vào input
-      fetch('../Trang_hoi_dap/getQuestion.php?id=' + id) // Giả định file getQuestion.php
+      fetch('../Trang_hoi_dap/getQuestion.php?id=' + id)
         .then(res => res.json())
         .then(data => {
           if (data.success && data.answer) {
