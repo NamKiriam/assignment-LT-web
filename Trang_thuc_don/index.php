@@ -18,7 +18,17 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="include/header_footer.css" rel="stylesheet">
 </head>
-
+<style>
+    .filter-btn {
+    background-color: #00c4b4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+</style>
 <body>
 
   <!-- Header bạn đã có sẵn -->
@@ -49,6 +59,7 @@
             <label><input type="checkbox"> Nước ngọt</label>
             <label><input type="checkbox"> Cafe</label>
             <label><input type="checkbox"> Trà</label>
+            <button class="filter-btn" onclick="filterDishes()">Lọc</button>
         </div>
 
         <!-- Main Content -->
@@ -172,7 +183,31 @@
 
   <!-- Footer bạn đã có sẵn -->
   <?php include("../include/footer_home.php"); ?>
+  <script>
+    function filterDishes() {
+        // Lấy tất cả các checkbox đã được tích
+        const checkedOptions = Array.from(document.querySelectorAll('.sidebar input[type="checkbox"]:checked'))
+            .map(checkbox => checkbox.parentElement.innerText.trim().toLowerCase());
 
+        // Lấy tất cả các món ăn trong mục "TẤT CẢ"
+        const allDishes = document.querySelectorAll('.popular-dishes .dish-card');
+
+        // Nếu không có checkbox nào được chọn, hiển thị tất cả các món ăn
+        if (checkedOptions.length === 0) {
+            allDishes.forEach(dish => {
+                dish.style.display = 'block';
+            });
+            return;
+        }
+
+        // Lọc các món ăn dựa trên các tùy chọn đã tích
+        allDishes.forEach(dish => {
+            const dishText = dish.innerText.toLowerCase();
+            const isMatch = checkedOptions.some(option => dishText.includes(option));
+            dish.style.display = isMatch ? 'block' : 'none';
+        });
+    }
+</script>
 </body>
 
 </html>

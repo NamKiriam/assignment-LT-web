@@ -119,6 +119,15 @@ body {
     margin: 10px 0;
     color: #666;
 }
+.filter-btn {
+    background-color: #00c4b4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
 .main-content {
     flex: 1;
 }
