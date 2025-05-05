@@ -16,84 +16,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="include/header_footer.css" rel="stylesheet">
 </head>
-<style>
-    @media (max-width: 768px) {
-    /* Adjust container padding */
-    .container {
-        padding: 10px;
-    }
 
-    /* Sidebar adjustments */
-    .sidebar {
-        display: none; /* Hide sidebar on small screens */
-    }
-
-    /* Main content full width */
-    .main-content {
-        width: 100%;
-        margin: 0;
-    }
-
-    /* Meal section adjustments */
-    .meal-section {
-        padding: 10px;
-    }
-
-    .meal-options div {
-        margin-bottom: 10px;
-    }
-
-    /* Popular dishes grid */
-    .popular-dishes {
-        display: grid;
-        grid-template-columns: 1fr; /* Single column for small screens */
-        gap: 10px;
-    }
-
-    .dish-card {
-        text-align: center;
-    }
-
-    .dish-card img {
-        width: 100%; /* Make images responsive */
-        height: auto;
-    }
-
-    /* Buttons */
-    .add-meal-btn, .order-btn {
-        width: 100%; /* Full-width buttons */
-        margin-top: 10px;
-    }
-
-    /* Category tabs */
-    .category-tabs button {
-        width: 100%; /* Full-width sorting button */
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Further adjustments for very small screens */
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    label {
-        font-size: 0.9rem;
-    }
-
-    select, input[type="text"] {
-        width: 100%; /* Full-width inputs */
-    }
-}
-</style>
 <body>
 
   <!-- Header bạn đã có sẵn -->
   <?php include("../include/header_home.php"); ?>
 
-    <div class="container">
+    <div class="container_body">
         <!-- Sidebar -->
         <div class="sidebar">
             <h3>GIÁ:</h3>
@@ -123,6 +54,26 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Meal Selection Section -->
+            <script>
+    let mealCount = 1;
+
+    function addMealSection() {
+        mealCount++;
+
+        // Lấy phần tử meal-section đầu tiên
+        const mealSection = document.getElementById('meal-section-1');
+
+        // Tạo bản sao của meal-section
+        const newMealSection = mealSection.cloneNode(true);
+
+        // Cập nhật id và tiêu đề của phần mới
+        newMealSection.id = `meal-section-${mealCount}`;
+        newMealSection.querySelector('#meal-number').innerText = `Phần ăn #${mealCount}`;
+
+        // Thêm phần mới vào cuối main-content
+        document.querySelector('.main-content').appendChild(newMealSection);
+    }
+</script>
             <div class="meal-section" id="meal-section-1">
                 <h2>Tạo suất ăn <span id="meal-number">Phần ăn #1</span></h2>
                 <div class="meal-options">
@@ -218,103 +169,6 @@
         </div>
     </div>
 
-    <!-- <script>
-        // Simulated database of dishes
-        const dishes = [
-            "Phở Bò",
-            "Bánh Mì Xíu",
-            "Bún Chả",
-            "Bánh Xèo",
-            "Món Súp Cua",
-            "Cafe Đen",
-            "Cơm Tấm",
-            "Hủ Tiếu",
-            "Gỏi Cuốn",
-            "Chả Giò"
-        ];
-
-        // Autocomplete functionality
-        function setupAutocomplete(inputId, listId) {
-            const input = document.getElementById(inputId);
-            const list = document.getElementById(listId);
-
-            input.addEventListener("input", function() {
-                const val = this.value.toLowerCase();
-                list.innerHTML = "";
-
-                if (!val) return;
-
-                const matches = dishes.filter(dish => dish.toLowerCase().includes(val));
-                matches.forEach(dish => {
-                    const div = document.createElement("div");
-                    div.textContent = dish;
-                    div.addEventListener("click", function() {
-                        input.value = dish;
-                        list.innerHTML = "";
-                    });
-                    list.appendChild(div);
-                });
-            });
-
-            document.addEventListener("click", function(e) {
-                if (e.target !== input) {
-                    list.innerHTML = "";
-                }
-            });
-        }
-
-        // Initialize autocomplete for the first section
-        setupAutocomplete("main-dish-1", "autocomplete-list-1");
-
-        // Add new meal section
-        let mealCount = 1;
-        function addMealSection() {
-            mealCount++;
-            const newSection = document.createElement("div");
-            newSection.className = "meal-section";
-            newSection.id = `meal-section-${mealCount}`;
-            newSection.innerHTML = `
-                <h2>Tạo suất ăn <span id="meal-number">Phần ăn #${mealCount}</span></h2>
-                <div class="meal-options">
-                    <div>
-                        <label>Món chính</label>
-                        <div class="autocomplete">
-                            <input type="text" id="main-dish-${mealCount}" placeholder="Chọn món">
-                            <div id="autocomplete-list-${mealCount}" class="autocomplete-items"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <label>Canh</label>
-                        <select>
-                            <option>Chọn nước</option>
-                            <option>Canh rau</option>
-                            <option>Canh chua</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Giải khát</label>
-                        <select>
-                            <option>Chọn nước</option>
-                            <option>Nước ngọt</option>
-                            <option>Cafe</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Tráng miệng</label>
-                        <select>
-                            <option>Trái cây, đồ ngọt...</option>
-                            <option>Trái cây</option>
-                            <option>Bánh ngọt</option>
-                        </select>
-                    </div>
-                    <button class="add-meal-btn" onclick="addMealSection()">+1</button>
-                </div>
-                <button class="order-btn">Đặt món</button>
-            `;
-            document.querySelector(".main-content").insertBefore(newSection, document.querySelector(".main-content").children[1]);
-            setupAutocomplete(`main-dish-${mealCount}`, `autocomplete-list-${mealCount}`);
-        }
-    </script> -->
 
   <!-- Footer bạn đã có sẵn -->
   <?php include("../include/footer_home.php"); ?>

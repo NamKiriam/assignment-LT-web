@@ -28,7 +28,76 @@ body {
   }
 
   /*container*/
-  .container {
+  @media (max-width: 768px) {
+    /* Adjust container padding */
+    .container {
+        padding: 10px;
+    }
+
+    /* Sidebar adjustments */
+    .sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    /* Main content full width */
+    .main-content {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Meal section adjustments */
+    .meal-section {
+        padding: 10px;
+    }
+
+    .meal-options div {
+        margin-bottom: 10px;
+    }
+
+    /* Popular dishes grid */
+    .popular-dishes {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column for small screens */
+        gap: 10px;
+    }
+
+    .dish-card {
+        text-align: center;
+    }
+
+    .dish-card img {
+        width: 100%; /* Make images responsive */
+        height: auto;
+    }
+
+    /* Buttons */
+    .add-meal-btn, .order-btn {
+        width: 100%; /* Full-width buttons */
+        margin-top: 10px;
+    }
+
+    /* Category tabs */
+    .category-tabs button {
+        width: 100%; /* Full-width sorting button */
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    select, input[type="text"] {
+        width: 100%; /* Full-width inputs */
+    }
+}
+  .container_body {
     max-width: auto;
     margin: 0 auto;
     display: flex;
