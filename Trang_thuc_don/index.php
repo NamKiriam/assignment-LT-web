@@ -1,9 +1,9 @@
 <?php include "../auth/auth_check.php"; 
-  $connect = mysqli_connect("localhost",root,"","foodiness_db");
+  // $connect = mysqli_connect("localhost",root,"","foodiness_db");
 
-  $sql = "SELECT * FROM dish";
+  // $sql = "SELECT * FROM dish";
 
-  $result = mysqli_query($connect, $sql);
+  // $result = mysqli_query($connect, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -121,25 +121,28 @@
             </div>
             <div class="popular-dishes">
                 <div class="dish-card">
-                    <img src="https://via.placeholder.com/150" alt="Bánh Xèo">
-                    <h2>BÁNH XÈO</h2><br>Món khô, thịt heo, dùng-trưa</p>
+                    <img src="assets/images/canhcua.png" alt="Canh cua mồng tơi">
+                    <h4 class ="bold">Canh cua mồng tơi</h4>
+                    <p>Món nước, hải sản</p>
                     <button>Thêm</button>
                 </div>
                 <div class="dish-card">
-                    <img src="https://via.placeholder.com/150" alt="Món Súp Cua">
-                    <p>MÓN SÚP CUA<br>Món nước, hải sản</p>
+                    <img src="assets/images/canhkhoqua.png" alt="Canh khổ qua">
+                    <h4 class="bold">Canh khổ qua</h4>
+                    <p>Món nước, thịt heo</p>
                     <button>Thêm</button>
                 </div>
                 <div class="dish-card">
-                    <img src="https://via.placeholder.com/150" alt="Cafe Đen">
-                    <p>CAFE ĐEN<br>Cafe, dùng-bữa</p>
+                    <img src="assets/images/denda.png" alt="Cafe đen đá">
+                    <h4 class ="bold">Cafe đen đá</h4>
+                    <p>Cafe</p>
                     <button>Thêm</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         // Simulated database of dishes
         const dishes = [
             "Phở Bò",
@@ -235,7 +238,7 @@
             document.querySelector(".main-content").insertBefore(newSection, document.querySelector(".main-content").children[1]);
             setupAutocomplete(`main-dish-${mealCount}`, `autocomplete-list-${mealCount}`);
         }
-    </script>
+    </script> -->
 
   <!-- Footer bạn đã có sẵn -->
   <?php include("../include/footer_home.php"); ?>
