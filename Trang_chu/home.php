@@ -1,3 +1,17 @@
+<?php
+require_once '../include/config.php';
+
+// Lấy nội dung từ site_content
+$content = [];
+$stmt = $connection->prepare("SELECT section, content FROM site_content WHERE page = 'home'");
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $content[$row['section']] = $row['content'];
+}
+$stmt->close();
+?>
+
 <?php include("../include/header_home.php"); ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -15,71 +29,22 @@
 
 <!-- Hero -->
 <section class="hero position-relative">
-    <img src="assets/picture/fine_dinner.png" class="w-100 hero-img" alt="Hero Image">
-    <!-- <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div> -->
-    <div class="hero-content position-absolute top-50 start-50 translate-middle p-4">
-      <h1 class="fw-bold text-uppercase text-danger">CƠM TRƯA VĂN PHÒNG FOODINESS</h1>
-      <p class="mb-4 text-start text-white">
-        Cơm trưa văn phòng không chỉ đơn giản là một bữa ăn cơm trưa văn phòng thông thường mà còn là sự kết hợp hài hòa giữa chất lượng và hương vị tinh tế.
-        Món cơm được chế biến từ những nguyên liệu tươi ngon, được nấu thật kỹ càng để đảm bảo dinh dưỡng và sự ngon miệng.
-      </p>
-      <a href="../Trang_thuc_don/index.php" class="btn btn-success fw-semibold px-4 py-2">Đặt món ngay</a>
-    </div>
-  </section>
-  
+  <img src="assets/picture/fine_dinner.png" class="w-100 hero-img" alt="Hero Image">
+  <div class="hero-content position-absolute top-50 start-50 translate-middle p-4">
+    <h1 class="fw-bold text-uppercase text-danger"><?= $content['hero_title'] ?? '' ?></h1>
+    <p class="mb-4 text-start text-white"><?= $content['hero_intro'] ?? '' ?></p>
+    <a href="../Trang_thuc_don/index.php" class="btn btn-success fw-semibold px-4 py-2"><?= $content['hero_button'] ?? 'Đặt món ngay' ?></a>
+  </div>
+</section>
 
 <!-- Vì sao chọn -->
 <section class="why-choose py-5">
   <div class="container text-center">
-    <h2 class="fw-bold">Vì sao chọn Foodiness?</h2>
+    <h2 class="fw-bold"><?= $content['why_title'] ?? '' ?></h2>
     <img src="assets/picture/chop_food.png" alt="subordinate-img" height="50">
-    <p class="mb-5">
-      Đến với Cơm Văn Phòng, bạn không cần bận tâm đến an toàn thực phẩm. Với nguyên tắc
-      “Cái đức đặt lên hàng đầu”, mọi khâu chế biến đều được đội ngũ bếp chăm chút kỹ lưỡng.
-    </p>
+    <p class="mb-5"><?= $content['why_text'] ?? '' ?></p>
     <div class="row g-4 features">
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/vegetable.png" alt="Tươi sạch">
-          <h5 class="fw-semibold">Nguồn thực phẩm tươi, sạch</h5>
-          <p><i>Cam kết không dùng hóa chất nhằm mục đích lợi nhuận.</i></p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/noodles.png" alt="Hương vị">
-          <h5 class="fw-semibold">Hương vị đặc trưng</h5>
-          <p><i>Đậm đà, phù hợp nhiều vùng miền.</i></p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/sushi.png" alt="Đa dạng">
-          <h5 class="fw-semibold">Đa dạng thực đơn</h5>
-          <p><i>Cập nhật thường xuyên, nhiều lựa chọn.</i></p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/clock.png" alt="Giao hàng">
-          <h5 class="fw-semibold">Giao hàng nhanh chóng</h5>
-          <p><i>Đúng giờ, đến tay khách hàng nhanh nhất.</i></p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/dinner_meat.png" alt="Dinh dưỡng">
-          <h5 class="fw-semibold">Đầy đủ chất dinh dưỡng</h5>
-          <p><i>Tiếp thêm năng lượng cho ngày làm việc.</i></p>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <div class="card p-3 h-100">
-          <img src="assets/picture/message.png" alt="Lắng nghe">
-          <h5 class="fw-semibold">Lắng nghe người dùng</h5>
-          <p><i>Cải thiện dịch vụ từ ý kiến khách hàng.</i></p>
-        </div>
-      </div>
+      <?= $content['why_items'] ?? '' ?>
     </div>
   </div>
 </section>
@@ -88,41 +53,13 @@
 <section class="order-process py-5">
   <div class="container">
     <div class="row align-items-center">
-      <!-- Bên trái: nội dung -->
       <div class="col-md-6">
         <div class="process-box p-4">
-          <h5 class="fw-bold text-dark mb-3">Quy trình đặt suất ăn online</h5>
-          <p class="mb-4 text-dark">
-            Một số khách hàng mà đặt cơm lần đầu còn chưa quen với cách thức đặt hàng,
-            sau đây là bảng tóm tắt quy trình đặt hàng của chúng tôi:
-          </p>
-          <ol class="process-steps ps-0">
-            <li>
-              <div class="step-circle">1</div>
-              <div class="step-content">
-                <h6 class="fw-bold">Xem thực đơn</h6>
-                <p>Quý khách tham khảo các món ăn có trong thực đơn</p>
-              </div>
-            </li>
-            <li>
-              <div class="step-circle">2</div>
-              <div class="step-content">
-                <h6 class="fw-bold">Liên hệ đặt hàng</h6>
-                <p>Quý khách liên hệ với công ty để đặt phần ăn</p>
-              </div>
-            </li>
-            <li>
-              <div class="step-circle">3</div>
-              <div class="step-content">
-                <h6 class="fw-bold">Giao hàng</h6>
-                <p>Công ty giao hàng tới quý khách</p>
-              </div>
-            </li>
-          </ol>
+          <h5 class="fw-bold text-dark mb-3"><?= $content['steps_title'] ?? '' ?></h5>
+          <p class="mb-4 text-dark">Một số khách hàng mà đặt cơm lần đầu còn chưa quen với cách thức đặt hàng, sau đây là bảng tóm tắt quy trình đặt hàng của chúng tôi:</p>
+          <?= $content['steps_list'] ?? '' ?>
         </div>
       </div>
-
-      <!-- hình ảnh -->
       <div class="col-md-6 text-center">
         <img src="assets/picture/order_online.png" alt="Order Online" class="img-fluid process-img">
       </div>
@@ -130,26 +67,9 @@
   </div>
 </section>
 
-  
-  <!-- Khách hàng nói gì -->
-  <section class="testimonials position-relative text-white">
-    <img src="assets/picture/banner_cuisine.png" class="img-fluid w-100" style="height: 400px; object-fit: cover;" alt="Background">
-    <div class="testimonial-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
-      <div class="text-center px-3 px-md-5">
-        <h5 class="mb-4 text-uppercase fw-bold">Khách hàng nói gì về Logo</h5>
-        <blockquote class="blockquote fs-5 fst-italic">
-          “Cơm và đồ ăn rất ngon, sạch sẽ, món ăn đa dạng”
-        </blockquote>
-        <div class="mt-3">
-          <img src="assets/picture/man_icon.png" class="rounded-circle" width="50" height="50" alt="Avatar">
-          <p class="mb-0 fw-bold">Anh Nguyễn Văn A</p>
-          <p class="small">Công ty BOSCH</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Khách hàng nói gì -->
+<?= $content['testimonial'] ?? '' ?>
 
 <?php include("../include/footer_home.php"); ?>
-
 </body>
 </html>

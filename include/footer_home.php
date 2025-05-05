@@ -1,3 +1,13 @@
+<?php
+require_once '../include/config.php';
+$content = [];
+$result = $connection->query("SELECT section, content FROM site_content WHERE page = 'home'");
+while ($row = $result->fetch_assoc()) {
+    $content[$row['section']] = $row['content'];
+}
+$connection->close();
+?>
+
 <!-- Footer -->
 <footer class="bg-footer text-dark py-4">
   <div class="container">
