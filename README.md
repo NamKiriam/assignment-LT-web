@@ -8,7 +8,7 @@ Clone repo này về máy tính của bạn bằng lệnh sau trong terminal:
 
 ```
 
-git clone [\<URL\_of\_the\_repository>](https://github.com/NamKiriam/assignment-LT-web)
+git clone https://github.com/NamKiriam/assignment-LT-web
 
 ```
 
