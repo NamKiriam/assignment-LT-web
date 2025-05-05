@@ -45,5 +45,3 @@ Chúc bạn thành công!
 - Đảm bảo rằng bạn đã cài đặt XAMPP trước khi thực hiện các bước này.
 - Nếu gặp bất kỳ sự cố nào, kiểm tra lại các cài đặt của XAMPP và các file trong thư mục `htdocs`.
 
-```
-
